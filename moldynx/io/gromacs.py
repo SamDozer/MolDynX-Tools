@@ -361,6 +361,96 @@ def find_gmx(prefer_wsl_distro: str | None = None) -> Gmx | None:
     return None
 
 
+def _shell_quote(a: str) -> str:
+    return "'" + a.replace("'", "'\"'\"'") + "'"
+
+
+def run_gmx_pipeline(gmx: Gmx, args: list[str], pipe: str, timeout: int = 3600
+                     ) -> subprocess.CompletedProcess:
+    """``gmx <args> 2>/dev/null | <pipe>`` in bash (native or WSL) -- filters huge dumps at the source."""
+    if gmx.kind == "wsl":
+        wargs = [windows_to_wsl(a) if re.match(r"^[A-Za-z]:[\\/]", a) else a for a in args]
+        exe = "gmx"
+    else:
+        wargs, exe = args, gmx.command[0]
+    script = f"#!/bin/bash\n{_shell_quote(exe)} {' '.join(_shell_quote(a) for a in wargs)} " \
+             f"2>/dev/null | {pipe}\n"
+    with tempfile.NamedTemporaryFile("w", suffix=".sh", delete=False, newline="\n") as fh:
+        fh.write(script)
+        spath = fh.name
+    try:
+        if gmx.kind == "wsl":
+            cmd = gmx.command + ["bash", windows_to_wsl(spath)]
+        else:
+            bash = shutil.which("bash")
+            if bash is None:
+                raise RuntimeError("bash is required to filter gmx output")
+            cmd = [bash, spath]
+        return subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+    finally:
+        try:
+            os.unlink(spath)
+        except OSError:
+            pass
+
+
+@dataclass
+class PositionRestraints:
+    tpr: str
+    available: bool
+    n_restrained: int = 0
+    by_force_constant: dict[str, int] = field(default_factory=dict)   # "400" -> atoms
+    by_molecule_block: list[int] = field(default_factory=list)       # restrained atoms per block
+    error: str | None = None
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+def tpr_position_restraints(gmx: Gmx | None, tpr: str | Path) -> PositionRestraints:
+    """
+    Position restraints stored in a run input (``gmx dump``): restrained atoms per force
+    constant (x component, kJ mol⁻¹ nm⁻²) and per molecule block. ``gmx dump`` prints one
+    ``Position Rest.`` interaction list per molecule type; its ``nr:`` counts integers
+    (2 per restraint: type + atom).
+    """
+    out = PositionRestraints(tpr=str(tpr), available=False)
+    if gmx is None:
+        out.error = "GROMACS not available"
+        return out
+    pattern = r"functype\[[0-9]+\]=POSRES|Position Rest\.:|\(POSRES\)"
+    try:
+        r = run_gmx_pipeline(gmx, ["dump", "-s", str(tpr)],
+                             f"grep -E {_shell_quote(pattern)}", timeout=3600)
+    except (OSError, subprocess.SubprocessError, RuntimeError) as exc:
+        out.error = str(exc)
+        return out
+    fc: dict[int, str] = {}
+    blocks: list[int] = []
+    counts: dict[str, int] = {}
+    for line in r.stdout.splitlines():
+        m = re.search(r"functype\[(\d+)\]=POSRES.*?fcA=\(\s*([-\d.eE+]+)", line)
+        if m:
+            fc[int(m.group(1))] = f"{float(m.group(2)):g}"
+            continue
+        if "Position Rest.:" in line:
+            blocks.append(0)
+            continue
+        m = re.search(r"type=(\d+) \(POSRES\)", line)
+        if m and blocks:
+            blocks[-1] += 1
+            key = fc.get(int(m.group(1)), "?")
+            counts[key] = counts.get(key, 0) + 1
+    out.available = r.returncode == 0 or bool(blocks)
+    out.by_molecule_block = [b for b in blocks if b] if any(blocks) else blocks[:0]
+    out.by_force_constant = dict(sorted(counts.items(), key=lambda kv: -float(kv[0])
+                                        if kv[0] != "?" else 0))
+    out.n_restrained = sum(counts.values())
+    if not out.available:
+        out.error = (r.stderr or "gmx dump failed")[-300:]
+    return out
+
+
 def run_gmx(gmx: Gmx, args: list[str], stdin: str | None = None,
             timeout: int = 3600) -> subprocess.CompletedProcess:
     """

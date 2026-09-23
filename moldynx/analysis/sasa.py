@@ -7,6 +7,7 @@ import pandas as pd
 import mdtraj as md
 
 from moldynx.core.base import BaseAnalysis
+from moldynx.core.surface import shrake_rupley
 from moldynx import plotting
 from moldynx import statistics as st
 from moldynx.plotting import PALETTE
@@ -20,7 +21,7 @@ class SASAAnalysis(BaseAnalysis):
     supported_systems = {"*"}
     outputs = ["results/sasa_total.csv", "results/sasa_per_residue.csv",
                "figures/sasa_timeseries.png", "figures/sasa_per_residue.png"]
-    default_params = {"window": 20}
+    default_params = {"window": 20, "stride": 10}   # SASA is computed frame by frame (see core.surface)
 
     def run(self, ctx) -> dict:
         p = self.params(ctx)
@@ -28,9 +29,9 @@ class SASAAnalysis(BaseAnalysis):
         # mdtraj reads the cached solute trajectory
         ctx.core_universe()  # ensure core.{pdb,xtc} exist
         traj = md.load(str(ctx.config.data_dir / "core.xtc"),
-                       top=str(ctx.config.data_dir / "core.pdb"))
+                       top=str(ctx.config.data_dir / "core.pdb"), stride=p["stride"])
         time_ns = traj.time / 1000.0
-        sasa_res = md.shrake_rupley(traj, mode="residue")   # nm^2
+        sasa_res = shrake_rupley(traj, mode="residue")      # nm^2 (multi-frame-safe)
         total = sasa_res.sum(axis=1)
         resids = np.array([r.resSeq for r in traj.topology.residues])
         resnames = np.array([r.name for r in traj.topology.residues])

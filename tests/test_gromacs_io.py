@@ -164,6 +164,34 @@ def test_tpr_header_unreadable_is_reported_not_raised(tmp_path):
     assert not h.readable and h.error
 
 
+def test_position_restraint_parser(monkeypatch):
+    import subprocess
+
+    from moldynx.io import gromacs as g
+    # gmx dump lines in the real format (filtered by grep at the source)
+    dump = "\n".join([
+        "           functype[1240]=POSRES, pos0A=( 0.0e+00, 0.0e+00, 0.0e+00), "
+        "fcA=( 4.00000000e+02, 4.00000000e+02, 4.00000000e+02), pos0B=( 0, 0, 0), fcB=( 400, 400, 400)",
+        "           functype[1242]=POSRES, pos0A=( 0.0e+00, 0.0e+00, 0.0e+00), "
+        "fcA=( 4.00000000e+01, 4.00000000e+01, 4.00000000e+01), pos0B=( 0, 0, 0), fcB=( 40, 40, 40)",
+        "      Position Rest.:",
+        "            0 type=1240 (POSRES)   0",
+        "            1 type=1240 (POSRES)   4",
+        "            2 type=1242 (POSRES)   6",
+        "      Position Rest.:",
+        "            0 type=1242 (POSRES)   0",
+        "      Position Rest.:",
+    ])
+    monkeypatch.setattr(g, "run_gmx_pipeline",
+                        lambda *a, **k: subprocess.CompletedProcess([], 0, dump, ""))
+    r = g.tpr_position_restraints(g.Gmx("native", ["gmx"]), "x.tpr")
+    assert r.available and r.n_restrained == 4
+    assert r.by_force_constant == {"400": 2, "40": 2}
+    assert r.by_molecule_block == [3, 1]
+    none = g.tpr_position_restraints(None, "x.tpr")
+    assert not none.available and "not available" in none.error
+
+
 def test_windows_to_wsl():
     assert windows_to_wsl(r"E:\a b\c.tpr") == "/mnt/e/a b/c.tpr"
     assert windows_to_wsl("/already/posix") == "/already/posix"

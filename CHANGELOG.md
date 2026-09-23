@@ -62,3 +62,26 @@
 - Validated on two 100 ns protein–protein trajectories (1.6 M and 2.0 M atoms): split-frame
   counts, zero whole-box translations, minimum inter-chain distances and molecular extents
   reproduce an independent manual audit exactly.
+
+### Preparation and equilibration audit
+
+- New `equilibration` analysis: per-stage parameters from the logs, minimisation outcome (states
+  plainly when the force tolerance was *not* reached) and the chain/residue/atom carrying the
+  largest residual force, crash-dump accounting, energy-file statistics (tail means, residual
+  drift, settling times), position restraints per force constant and molecule type (`gmx dump`,
+  native or WSL; production must have none), protonation states, chain of custody from job
+  scripts (`moldynx.io.jobscripts`), stage timeline, figure. Missing inputs are reported.
+- Reproduces the manual audit of both reference datasets and additionally located the largest
+  residual force of one system on a protonated aspartate.
+
+### Interface and surface area
+
+- `interface` rewritten from the validated legacy suite: residue–residue contacts, interface
+  occupancy with **full** core lists, persistent contacts, residues ever within 6 Å (the set a
+  binding-energy decomposition must cover), buried area, interface Cα RMSD, trends.
+- **Fixed:** `mdtraj.shrake_rupley` (1.11.1) returns wrong values for some frames of a
+  multi-frame call (±0.5 nm² on a real trajectory; negative buried areas in a rigid-body test).
+  `moldynx.core.surface.shrake_rupley` computes frame by frame; `sasa` and `interface` buried
+  area now stride by 10 frames by default (parameters `stride` / `bsa_stride`).
+
+Remaining 0.3 work: `docs/NEXT_STEPS.md`.
