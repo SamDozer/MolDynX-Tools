@@ -3,9 +3,9 @@ requires = ["setuptools>=64", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "molecular-dynamics-forge"
-version = "0.2.1"
-description = "Reusable, extensible framework for reproducible analysis of GROMACS molecular dynamics simulations of arbitrary biomolecular systems."
+name = "moldynx-tools"
+version = "0.3.0"
+description = "MolDynX Tools (formerly mdforge): reusable, extensible framework for reproducible, audited analysis of GROMACS molecular dynamics simulations of arbitrary biomolecular systems."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -44,14 +44,17 @@ Homepage = "https://github.com/SamDozer/molecular-dynamics-forge"
 Repository = "https://github.com/SamDozer/molecular-dynamics-forge"
 
 [project.scripts]
-mdforge = "mdforge.cli.main:main"
+moldynx = "moldynx.cli.main:main"
+# Deprecated alias kept for one minor version after the rename from mdforge.
+mdforge = "moldynx.cli.main:main"
 
-# Third-party packages advertise plugins under this entry-point group.
-# [project.entry-points."mdforge.plugins"]
+# Third-party packages advertise plugins under this entry-point group
+# (the legacy "mdforge.plugins" group is still read, with a deprecation warning).
+# [project.entry-points."moldynx.plugins"]
 # my_analysis = "my_package.my_module"
 
 [tool.setuptools.packages.find]
-include = ["mdforge*"]
+include = ["moldynx*", "mdforge*"]   # mdforge = deprecated import shim
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

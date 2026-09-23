@@ -1,11 +1,11 @@
-# mdforge — reusable, reproducible GROMACS MD analysis
+# MolDynX Tools — reusable, reproducible, audited GROMACS MD analysis
 
 [![CI](https://github.com/SamDozer/molecular-dynamics-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/molecular-dynamics-forge/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21265946.svg)](https://doi.org/10.5281/zenodo.21265946)
 
-**mdforge** turns a GROMACS simulation directory into a complete, publication-quality,
+**MolDynX Tools** (`moldynx`; formerly *mdforge*) turns a GROMACS simulation directory into a complete, publication-quality,
 fully reproducible analysis — with minimal input. Point it at a folder; it discovers
 the files, **detects the system** (protein / ligand / DNA / RNA / membrane / ions /
 multi-chain / …), **auto-selects the right analyses**, runs them with streaming-friendly
@@ -24,7 +24,7 @@ performance, and produces figures, tables, a provenance manifest, and a report.
 - **Automatic module selection** — each analysis declares the system types and files
   it supports; the pipeline runs exactly what applies (`--plan` shows *why*).
 - **Extensible via plugins** — drop a `BaseAnalysis` subclass into
-  `mdforge/analysis/plugins/` (or a `--plugin-dir`) and it is auto-discovered.
+  `moldynx/analysis/plugins/` (or a `--plugin-dir`) and it is auto-discovered.
 - **Config-driven** — describe a whole run in `config.yaml` and re-run with one command
   (ideal for HPC/batch).
 - **Reproducible by construction** — every run writes `manifest.json/yaml` with library
@@ -51,11 +51,11 @@ python -m pip install -e ".[all]"      # or ".[dev]" for tests
 ## Usage
 
 ```bash
-mdforge detect  --input /path/to/sim_dir            # what's in my system?
-mdforge analyze --input /path/to/sim_dir --plan     # what would run, and why?
-mdforge analyze --input /path/to/sim_dir -o results # run everything applicable
-mdforge analyze --config examples/alpha_zein_A8HNE1/config.yaml   # reproducible
-mdforge list-analyses                                # registered analyses (incl. plugins)
+moldynx detect  --input /path/to/sim_dir            # what's in my system?
+moldynx analyze --input /path/to/sim_dir --plan     # what would run, and why?
+moldynx analyze --input /path/to/sim_dir -o results # run everything applicable
+moldynx analyze --config examples/alpha_zein_A8HNE1/config.yaml   # reproducible
+moldynx list-analyses                                # registered analyses (incl. plugins)
 ```
 
 See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for all options and the plugin template.
@@ -63,7 +63,7 @@ See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for all options and the plugin te
 ## Architecture
 
 ```
-mdforge/
+moldynx/
   core/       system.py (detection) · base.py (BaseAnalysis) · registry.py (+plugins)
               context.py · config.py (YAML+CLI) · provenance.py · pipeline.py
   io/         discovery.py · validation.py
@@ -90,7 +90,7 @@ Every analysis subclasses `BaseAnalysis`, declaring `required_files`,
 | **Protein–DNA/RNA** | protein–nucleic contacts, nucleic RMSD |
 
 Each is a drop-in `BaseAnalysis`; the pipeline runs only those applicable to the
-detected system (`mdforge list-analyses` shows all; `--plan` shows what runs and why).
+detected system (`moldynx list-analyses` shows all; `--plan` shows what runs and why).
 The complex/ligand/nucleic modules are implemented and gate correctly but await
 validation on a matching test trajectory.
 
@@ -103,14 +103,14 @@ cat results/manifest.json     # versions, git commit, seeds, params, input hashe
 ## Container
 
 ```bash
-docker build -t mdforge .
-docker run --rm -v /data/sim:/sim mdforge analyze --input /sim --output /sim/results
+docker build -t moldynx .
+docker run --rm -v /data/sim:/sim moldynx analyze --input /sim --output /sim/results
 ```
 
 ## Roadmap
 
 See **[ROADMAP.md](ROADMAP.md)** for the plan — the flagship being a
-**comparison mode** (`mdforge compare`) that overlays control vs. protein–ligand /
+**comparison mode** (`moldynx compare`) that overlays control vs. protein–ligand /
 protein–protein systems on shared axes (ΔRMSF maps, common-subspace PCA, ensemble
 similarity), plus parallel execution, a functional API, membrane and multi-engine
 support — drawing design influence from
@@ -119,9 +119,9 @@ support — drawing design influence from
 
 ## Citation
 
-If you use mdforge, please cite it (concept DOI — always resolves to the latest version):
+If you use MolDynX Tools, please cite it (concept DOI — always resolves to the latest version):
 
-> Mahmoud, H. *mdforge: a reusable, reproducible analysis framework for GROMACS
+> Mahmoud, H. *MolDynX Tools: a reusable, reproducible analysis framework for GROMACS
 > molecular dynamics simulations.* Zenodo. https://doi.org/10.5281/zenodo.21265946
 
 A machine-readable [`CITATION.cff`](CITATION.cff) is included (GitHub shows a

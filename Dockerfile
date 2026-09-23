@@ -1,6 +1,6 @@
-# mdforge -- reproducible container image.
-# Build:  docker build -t mdforge .
-# Run:    docker run --rm -v /data/sim:/sim mdforge analyze --input /sim --output /sim/results
+# MolDynX Tools -- reproducible container image.
+# Build:  docker build -t moldynx .
+# Run:    docker run --rm -v /data/sim:/sim moldynx analyze --input /sim --output /sim/results
 FROM mambaorg/micromamba:1.5-jammy
 
 WORKDIR /app
@@ -12,5 +12,5 @@ COPY --chown=$MAMBA_USER:$MAMBA_USER . /app
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 RUN pip install --no-deps -e .
 
-ENTRYPOINT ["mdforge"]
+ENTRYPOINT ["moldynx"]
 CMD ["--help"]

@@ -1,15 +1,15 @@
 # ---------------------------------------------------------------------------
-# Reproducible mdforge workflow for the alpha-zein (A8HNE1) system.
+# Reproducible MolDynX Tools workflow for the alpha-zein (A8HNE1) system.
 #
 # Run it with a single command:
-#     mdforge analyze --config examples/alpha_zein_A8HNE1/config.yaml
+#     moldynx analyze --config examples/alpha_zein_A8HNE1/config.yaml
 #
 # CLI flags override anything set here, so the same file works on HPC/batch.
 # ---------------------------------------------------------------------------
 
 # Point this at your GROMACS simulation directory (searched recursively).
 input_dir: /path/to/A8HNE1_MDS
-output_dir: examples/alpha_zein_A8HNE1/mdforge_out
+output_dir: examples/alpha_zein_A8HNE1/moldynx_out
 
 # Trajectory slicing / performance
 start: 0

@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, mdforge-framework]
+    branches: [main]
   pull_request:
 
 jobs:
@@ -23,6 +23,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -e ".[dev]"
       - name: Lint (ruff, non-blocking)
-        run: ruff check mdforge || true
+        run: ruff check moldynx || true
       - name: Run tests
         run: pytest -q

@@ -4,16 +4,16 @@ This directory holds the **reference example** that seeded the toolkit: a 100 ns
 GROMACS simulation of an AlphaFold 3 α-zein model (187 residues, explicit
 solvent, CHARMM36).
 
-- `config.yaml` — a complete, reproducible mdforge workflow for this system.
+- `config.yaml` — a complete, reproducible MolDynX Tools workflow for this system.
 - `figures/`, `results/`, `tables/`, `report/` — outputs produced by the original
   project-specific pipeline (now preserved in [`../../legacy/`](../../legacy)),
   kept here as a worked example of what a full analysis looks like.
 
-## Reproduce with mdforge
+## Reproduce with MolDynX Tools
 
 ```bash
 # edit input_dir in config.yaml to point at your copy of the raw files, then:
-mdforge analyze --config examples/alpha_zein_A8HNE1/config.yaml
+moldynx analyze --config examples/alpha_zein_A8HNE1/config.yaml
 ```
 
 The raw simulation files (`step5_production.xtc/.tpr/.edr/...`) are **not**

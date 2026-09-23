@@ -1,15 +1,15 @@
-"""Unit tests for the mdforge core (no large trajectory data required)."""
+"""Unit tests for the MolDynX Tools core (no large trajectory data required)."""
 
 from __future__ import annotations
 
 import numpy as np
 
-from mdforge.core.system import (
+from moldynx.core.system import (
     _classify_resname, _build_flags, _classify_system,
     ComponentType, SystemType, SystemInfo, Component,
 )
-from mdforge.core.registry import registry
-from mdforge import statistics as st
+from moldynx.core.registry import registry
+from moldynx import statistics as st
 
 
 # --------------------------------------------------------------------------- #
