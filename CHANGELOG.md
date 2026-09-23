@@ -38,3 +38,27 @@
 - The run manifest records the evidence chain and fingerprints every file the run depends on.
 - `analyze` output now defaults to `./moldynx_results/<input folder name>` (was
   `./moldynx_results`), so runs of different simulations do not overwrite each other.
+
+### Periodic boundaries: diagnose, treat, prove — in one pass
+
+- **Fixed:** solute extraction applied `unwrap` inside `try/except: pass`, so a topology without
+  bonds silently produced a trajectory that was never made whole; the cached solute trajectory was
+  reused whenever the files existed, whatever the inputs, frame slice or treatment.
+- New `moldynx.core.pbc`: for every frame the raw coordinates are diagnosed first (molecules split
+  across the boundary, centre-of-mass continuity, PBC-aware minimum distance between partners),
+  then treated (`--pbc auto|none|whole|nojump`; `auto` = nojump for multi-molecule solutes, with
+  first-frame clustering), then **proven** against the raw frame: only whole-box translations,
+  all bonds short, partner distances preserved, and a split molecule shows two translation vectors
+  exactly in the frames where it was split. Nothing is repaired silently.
+- New `pbc_validation` analysis (runs first) with `results/pbc_summary.json`,
+  `results/pbc_per_frame.csv` and a figure.
+- The solute cache (`data/core_meta.json`) is keyed on input fingerprints, PBC mode, frame slice
+  and selection.
+- **Fixed:** `interface` could not resolve the two partners of CHARMM-GUI complexes: the PDB
+  format truncates `seg_0_PROA` / `seg_1_PROB` to `seg_`, so both chains read back from the cached
+  structure as one segment. Chain identity is now persisted as atom-index ranges
+  (`AnalysisContext.chain_groups()`); `interface` returns an explicit `skipped` reason instead of a
+  silent note when partners cannot be resolved.
+- Validated on two 100 ns protein–protein trajectories (1.6 M and 2.0 M atoms): split-frame
+  counts, zero whole-box translations, minimum inter-chain distances and molecular extents
+  reproduce an independent manual audit exactly.

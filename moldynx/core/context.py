@@ -24,7 +24,6 @@ import pandas as pd
 
 warnings.filterwarnings("ignore", category=DeprecationWarning, module="MDAnalysis")
 import MDAnalysis as mda  # noqa: E402
-from MDAnalysis.transformations import unwrap  # noqa: E402
 from tqdm import tqdm  # noqa: E402
 
 from moldynx.core.config import RunConfig
@@ -71,38 +70,139 @@ class AnalysisContext:
 
     def core_universe(self) -> mda.Universe:
         """
-        A cached, PBC-corrected, solute-only trajectory universe.
+        A cached, PBC-treated, solute-only trajectory universe.
 
-        Built once and stored under ``data/core.{pdb,xtc}``; reused on subsequent
-        analyses and subsequent runs.
+        Stored under ``data/core.{pdb,xtc}`` with ``data/core_meta.json``. The cache is
+        reused only if its key -- input fingerprints, PBC mode, frame slice, solute
+        selection -- matches the current run; otherwise it is rebuilt.
         """
         if self._core is not None:
             return self._core
         core_pdb = self.config.data_dir / "core.pdb"
         core_xtc = self.config.data_dir / "core.xtc"
-        if not (core_pdb.exists() and core_xtc.exists()):
+        meta = self._read_core_meta()
+        if not (core_pdb.exists() and core_xtc.exists() and meta
+                and meta.get("cache_key") == self._core_cache_key()):
             self._extract_core(core_pdb, core_xtc)
         self._core = mda.Universe(str(core_pdb), str(core_xtc))
         return self._core
 
+    # -- cache bookkeeping ------------------------------------------------ #
+    _EXTRACT_VERSION = 2   # bump when the extraction algorithm changes
+
+    def _core_cache_key(self) -> dict:
+        from moldynx.core.provenance import file_fingerprint
+        sl = self.frame_slice()
+        return {"version": self._EXTRACT_VERSION,
+                "topology": file_fingerprint(self.topology),
+                "trajectory": file_fingerprint(self.trajectory),
+                "selection": self.core_selection(), "pbc": self.config.pbc,
+                "slice": [sl.start, sl.stop, sl.step]}
+
+    def _read_core_meta(self) -> dict | None:
+        p = self.config.data_dir / "core_meta.json"
+        if not p.exists():
+            return None
+        try:
+            import json
+            return json.loads(p.read_text(encoding="utf-8"))
+        except ValueError:
+            return None
+
+    @property
+    def core_meta(self) -> dict:
+        """Chain identity, PBC treatment and cache key of the solute trajectory."""
+        self.core_universe()
+        return self._read_core_meta() or {}
+
+    def chain_groups(self, universe: mda.Universe | None = None) -> list[tuple[dict, "mda.AtomGroup"]]:
+        """
+        Protein chains of the solute trajectory as ``(record, AtomGroup)`` pairs,
+        addressed by atom index ranges (robust to PDB segid truncation).
+        """
+        u = universe or self.core_universe()
+        out = []
+        for rec in self.core_meta.get("chains", []):
+            ag = u.atoms[rec["core_start"]:rec["core_stop"]]
+            if ag.n_atoms:
+                out.append((rec, ag))
+        return out
+
+    # -- extraction ------------------------------------------------------- #
     def _extract_core(self, core_pdb: Path, core_xtc: Path) -> None:
+        import json
+        from moldynx.core.pbc import PBCProcessor
+
         u = self.full_universe()
         core = u.select_atoms(self.core_selection())
         if core.n_atoms == 0:
             raise RuntimeError(f"Core selection matched no atoms: {self.core_selection()!r}")
-        # make the solute whole across PBC (needs bonds; .tpr provides them)
-        try:
-            u.trajectory.add_transformations(unwrap(core))
-        except Exception:
-            pass  # some topologies lack bonds; proceed unwrapped
+        core_ix = core.indices
+
+        # units: protein chains (from the full topology) + other bonded molecules
+        chains = [c for c in getattr(self.system, "chains", [])
+                  if np.isin(np.arange(c.atom_start, c.atom_stop), core_ix).all()]
+        units, labels, in_chain = [], [], np.zeros(core.n_atoms, bool)
+        for c in chains:
+            units.append(u.atoms[c.atom_start:c.atom_stop])
+            labels.append(c.segid or f"chain{c.index}")
+            lo = int(np.searchsorted(core_ix, c.atom_start))
+            in_chain[lo:lo + (c.atom_stop - c.atom_start)] = True
+        rest = core[~in_chain]
+        if rest.n_atoms:
+            try:
+                frags = [f.intersection(rest) for f in rest.fragments]
+            except Exception:  # no bonds
+                frags = [s.atoms.intersection(rest) for s in rest.segments]
+            for f in sorted((f for f in frags if f.n_atoms), key=lambda a: int(a.indices[0])):
+                units.append(f)
+                labels.append(f"{f.residues[0].resname}{f.residues[0].resid}")
+        if not units:
+            units, labels = [core], ["solute"]
+        n_prot = len(chains)
+        pairs = [(i, j) for i in range(min(n_prot, 6)) for j in range(i + 1, min(n_prot, 6))]
+        pairs += [(0, k) for k in range(n_prot, min(len(units), n_prot + 6))] if n_prot else []
+
+        proc = PBCProcessor(core, units, labels, mode=self.config.pbc, pairs=pairs)
+        if not proc.has_bonds and proc.mode != "none":
+            print("[core-extract] WARNING: the topology has no bonds -- molecules cannot be "
+                  "made whole; this is recorded in data/core_meta.json and results/pbc_summary.json")
         sl = self.frame_slice()
-        u.trajectory[sl.start or 0]
-        core.write(str(core_pdb))
         n = len(range(*sl.indices(len(u.trajectory))))
+        wrote_pdb = False
         with mda.Writer(str(core_xtc), core.n_atoms) as W:
-            for _ in tqdm(u.trajectory[sl], total=n,
-                          desc="[core-extract] solute", unit="frame"):
+            for ts in tqdm(u.trajectory[sl], total=n,
+                           desc=f"[core-extract] solute ({proc.mode})", unit="frame"):
+                proc.process(ts)
+                if not wrote_pdb:
+                    core.write(str(core_pdb))
+                    wrote_pdb = True
                 W.write(core)
+
+        summary = proc.summary()
+        self.config.results_dir.mkdir(parents=True, exist_ok=True)
+        proc.per_frame().to_csv(self.config.results_dir / "pbc_per_frame.csv", index=False)
+        (self.config.results_dir / "pbc_summary.json").write_text(
+            json.dumps(summary, indent=2, default=float), encoding="utf-8")
+        chain_meta = []
+        for c in chains:
+            lo = int(np.searchsorted(core_ix, c.atom_start))
+            d = c.to_dict()
+            d.update(core_start=lo, core_stop=lo + (c.atom_stop - c.atom_start))
+            chain_meta.append(d)
+        meta = {"cache_key": self._core_cache_key(), "n_atoms": int(core.n_atoms),
+                "n_frames": n, "selection": self.core_selection(),
+                "pbc_mode": summary["mode"], "made_whole": summary["made_whole"],
+                "whole_box_translations_undone": {u_["label"]: u_["whole_box_translations_undone"]
+                                                  for u_ in summary["units"]},
+                "first_frame_clustered": summary["first_frame_clustered"],
+                "checks": summary["checks"], "chains": chain_meta, "units": labels}
+        (self.config.data_dir / "core_meta.json").write_text(
+            json.dumps(meta, indent=2, default=str), encoding="utf-8")
+        if self.provenance is not None:
+            self.provenance.data["pbc"] = {k: meta[k] for k in
+                                           ("pbc_mode", "made_whole", "checks",
+                                            "whole_box_translations_undone")}
 
     # -- frames / time ---------------------------------------------------- #
     def frame_slice(self) -> slice:

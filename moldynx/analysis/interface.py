@@ -33,30 +33,38 @@ class InterfaceAnalysis(BaseAnalysis):
     default_params = {"cutoff": 5.0}
     outputs = ["results/interface.csv", "figures/interface.png"]
 
-    def _partners(self, u, system) -> tuple[str, str]:
-        if system.flags.get("has_nucleic"):
-            return "protein", "nucleic"
-        segs = [s for s in u.select_atoms("protein").segments
-                if s.atoms.select_atoms("name CA").n_residues > 0]
-        segs = sorted(segs, key=lambda s: s.atoms.n_atoms, reverse=True)
-        if len(segs) >= 2:
-            return f"segid {segs[0].segid}", f"segid {segs[1].segid}"
-        return "protein", "protein"
+    def _partners(self, ctx, u):
+        """
+        The two interface partners as (label, AtomGroup) pairs.
+
+        Protein chains come from the chain identity persisted at extraction
+        (atom-index ranges): the PDB format truncates CHARMM-GUI segment IDs
+        (``seg_0_PROA``/``seg_1_PROB`` -> ``seg_``), so segments read back from
+        ``core.pdb`` cannot tell the chains apart.
+        """
+        if ctx.system.flags.get("has_nucleic"):
+            return ("protein", u.select_atoms("protein")), ("nucleic", u.select_atoms("nucleic"))
+        chains = sorted(ctx.chain_groups(u), key=lambda rc: rc[1].n_atoms, reverse=True)
+        if len(chains) >= 2:
+            (ra, a), (rb, b) = chains[0], chains[1]
+            return (ra.get("segid") or "chain A", a), (rb.get("segid") or "chain B", b)
+        return None, None
 
     def run(self, ctx) -> dict:
         p = self.params(ctx)
         plotting.set_style()
         u = ctx.core_universe()
-        selA, selB = self._partners(u, ctx.system)
-        A, B = u.select_atoms(selA), u.select_atoms(selB)
-        if A.n_atoms == 0 or B.n_atoms == 0 or selA == selB:
-            return {"note": f"could not resolve two interface partners ({selA}/{selB})"}
+        pa, pb = self._partners(ctx, u)
+        if pa is None or pa[1].n_atoms == 0 or pb[1].n_atoms == 0:
+            return {"status": "skipped",
+                    "reason": "could not resolve two interface partners "
+                              f"({len(ctx.chain_groups(u))} protein chain(s) recorded)"}
+        (selA, A), (selB, B) = pa, pb
 
-        # BSA via mdtraj on the cached core trajectory
+        # BSA via mdtraj on the cached core trajectory (same atom order as the universe)
         traj = md.load(str(ctx.config.data_dir / "core.xtc"),
                        top=str(ctx.config.data_dir / "core.pdb"))
-        idxA = traj.topology.select(_mda_to_mdtraj(selA))
-        idxB = traj.topology.select(_mda_to_mdtraj(selB))
+        idxA, idxB = A.indices, B.indices
         sasa_all = md.shrake_rupley(traj, mode="atom")
         bsa = (sasa_all[:, idxA].sum(1) + sasa_all[:, idxB].sum(1)
                - md.shrake_rupley(traj.atom_slice(np.concatenate([idxA, idxB])),
@@ -82,14 +90,3 @@ class InterfaceAnalysis(BaseAnalysis):
 
         return {"partners": [selA, selB], "bsa": st.describe(bsa, "bsa_nm2"),
                 "mean_interface_contacts": float(contacts.mean()), "figure": "interface"}
-
-
-def _mda_to_mdtraj(sel: str) -> str:
-    """Best-effort translation of the simple selections used here to mdtraj DSL."""
-    if sel == "protein":
-        return "protein"
-    if sel == "nucleic":
-        return "nucleic"
-    if sel.startswith("segid "):
-        return f"chainid {sel.split()[1]}"  # approximate
-    return "all"
