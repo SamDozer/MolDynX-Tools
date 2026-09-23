@@ -1,0 +1,15 @@
+MM-PBSA  alpha-zein Q946V6 (ligand) - ZmBiP2 (receptor)  CHARMM36-family, 303.15 K
+&general
+  sys_name            = "Q946V6_ZmBiP2_PB",
+  startframe          = 1,
+  endframe            = 1001,
+  interval            = 10,
+  temperature         = 303.15,
+  PBRadii             = 7,
+  verbose             = 2,
+/
+&pb
+  istrng              = 0.150,
+  fillratio           = 4.0,
+  inp                 = 1,
+/

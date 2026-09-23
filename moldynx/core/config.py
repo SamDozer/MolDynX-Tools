@@ -50,6 +50,15 @@ class RunConfig:
     seed: int = 0
     interactive: bool = False
 
+    # -- intake / provenance (0.3) ---------------------------------------- #
+    allow_ambiguous: bool = False             # proceed (with warnings) when the run is ambiguous
+    include_dirs: list[str] = field(default_factory=list)  # folders never treated as derived output
+    pbc: str = "auto"                         # auto | none | whole | nojump (see core/pbc.py)
+
+    # -- what only the user can supply (never invented) -------------------- #
+    annotations: dict = field(default_factory=dict)      # chains, numbering, motifs, metadata
+    binding_energy: dict = field(default_factory=dict)   # primary window, ionic strength, ...
+
     def __post_init__(self):
         for k in ("input_dir", "output_dir", "trajectory", "topology",
                   "energy", "index", "gmx_top"):
@@ -102,6 +111,7 @@ class RunConfig:
             "system_type": "system_type", "chains": "chains", "ligand": "ligand",
             "start": "start", "end": "end", "stride": "stride", "threads": "threads",
             "run_all": "all", "interactive": "interactive", "seed": "seed",
+            "allow_ambiguous": "allow_ambiguous", "pbc": "pbc",
         }
         for attr, argname in mapping.items():
             val = getattr(args, argname, None)

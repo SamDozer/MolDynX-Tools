@@ -22,13 +22,20 @@ from moldynx.io.validation import validate_fileset
 
 def build_plan(config: RunConfig, ask=None):
     """Resolve files + system + selected analyses without running anything."""
-    fs = discover_files(config.input_dir)
+    fs = discover_files(config.input_dir, include_dirs=config.include_dirs)
     fs.trajectory = pick_trajectory(fs, interactive=config.interactive, ask=ask)
+    explicit = bool(config.trajectory or config.topology)
     if config.trajectory:
         fs.trajectory = Path(config.trajectory)
     if config.topology:
         fs.topology = Path(config.topology)
-    validation = validate_fileset(fs)
+    for role in ("energy", "index", "gmx_top"):
+        if getattr(config, role, None):
+            setattr(fs, role, Path(getattr(config, role)))
+    if explicit or (config.interactive and ask is not None):
+        fs.ambiguities = []          # the user decided explicitly
+        fs.evidence["user_override"] = True
+    validation = validate_fileset(fs, allow_ambiguous=config.allow_ambiguous)
 
     system = None
     selected, skipped = [], []
@@ -90,6 +97,12 @@ def run_pipeline(config: RunConfig | None = None, *, ask=None,
     manifest.set_config(config)
     manifest.set_system(system)
     manifest.set_inputs(fs)
+    try:  # the intake record travels with every run
+        from moldynx.io.intake import IntakeResult, _stage_summary, write_intake
+        write_intake(IntakeResult(fileset=fs, validation=validation,
+                                  stages=_stage_summary(fs)), config.output_dir / "intake")
+    except Exception:
+        log("[intake] could not write the intake report:\n" + traceback.format_exc())
 
     ctx = AnalysisContext(config, system, fs, provenance=manifest)
     results: dict[str, dict] = {}

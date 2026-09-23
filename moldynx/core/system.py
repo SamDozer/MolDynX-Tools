@@ -126,6 +126,44 @@ class Component:
     selection: str
 
 
+_ONE_LETTER = {
+    "ALA": "A", "ARG": "R", "ASN": "N", "ASP": "D", "CYS": "C", "GLN": "Q", "GLU": "E",
+    "GLY": "G", "HIS": "H", "ILE": "I", "LEU": "L", "LYS": "K", "MET": "M", "PHE": "F",
+    "PRO": "P", "SER": "S", "THR": "T", "TRP": "W", "TYR": "Y", "VAL": "V",
+    # CHARMM / AMBER protonation and naming variants
+    "HSD": "H", "HSE": "H", "HSP": "H", "HID": "H", "HIE": "H", "HIP": "H", "HISD": "H",
+    "HISE": "H", "HISH": "H", "ASPP": "D", "ASH": "D", "GLUP": "E", "GLH": "E", "LYN": "K",
+    "CYX": "C", "CYM": "C", "LSN": "K", "ARGN": "R",
+}
+
+
+@dataclass
+class ChainRecord:
+    """
+    Identity of one polymer chain, independent of any file format.
+
+    PDB files truncate segment IDs to 4 characters (CHARMM-GUI's ``seg_0_PROA`` and
+    ``seg_1_PROB`` both become ``seg_``), so chain identity must be carried as atom
+    index ranges, not re-derived from a written structure.
+    """
+    index: int                  # 0-based order in the topology
+    segid: str
+    n_residues: int
+    n_atoms: int
+    atom_start: int             # 0-based, inclusive (topology atom order)
+    atom_stop: int              # 0-based, exclusive
+    resid_first: int
+    resid_last: int
+    sequence: str               # one-letter; X for unknown residues
+
+    def selection(self) -> str:
+        """MDAnalysis selection that survives format round-trips (index-based)."""
+        return f"index {self.atom_start}:{self.atom_stop - 1}"
+
+    def to_dict(self) -> dict:
+        return dict(self.__dict__)
+
+
 @dataclass
 class SystemInfo:
     """Structured description of a detected simulation system."""
@@ -138,6 +176,8 @@ class SystemInfo:
     selections: dict[str, str] = field(default_factory=dict)
     flags: dict[str, bool] = field(default_factory=dict)
     notes: list[str] = field(default_factory=list)
+    chains: list[ChainRecord] = field(default_factory=list)    # protein chains, topology order
+    ion_counts: dict[str, int] = field(default_factory=dict)   # resname -> number of ions
 
     # -- convenience ---------------------------------------------------- #
     def has(self, ctype: ComponentType | str) -> bool:
@@ -159,6 +199,8 @@ class SystemInfo:
             "selections": self.selections,
             "flags": self.flags,
             "notes": self.notes,
+            "chains": [c.to_dict() for c in self.chains],
+            "ion_counts": self.ion_counts,
         }
 
     def summary(self) -> str:
@@ -172,6 +214,40 @@ class SystemInfo:
                              f"({', '.join(c.resnames[:6])}"
                              f"{' …' if len(c.resnames) > 6 else ''})")
         return "\n".join(lines)
+
+
+def chain_records(u: mda.Universe) -> list[ChainRecord]:
+    """
+    Protein chains in topology order: one per segment, or per bonded fragment when a
+    topology puts several chains in one segment. Each chain must be a contiguous atom
+    block (true for GROMACS/CHARMM-GUI topologies); non-contiguous groups are skipped.
+    """
+    protein = u.select_atoms("protein")
+    if protein.n_atoms == 0:
+        return []
+    groups = [s.atoms.select_atoms("protein") for s in protein.segments]
+    groups = [g for g in groups if g.n_atoms]
+    if len(groups) <= 1:
+        try:
+            frags = [f.intersection(protein) for f in protein.fragments]
+            frags = [f for f in frags if f.select_atoms("name CA").n_atoms > 1]
+            if len(frags) > 1:
+                groups = frags
+        except Exception:  # no bond information in this topology
+            pass
+    out = []
+    for g in sorted(groups, key=lambda a: int(a.indices.min())):
+        idx = g.indices
+        if int(idx.max()) - int(idx.min()) + 1 != len(idx):
+            continue
+        res = g.residues
+        out.append(ChainRecord(
+            index=len(out), segid=str(g.segments[0].segid) if g.n_segments else "",
+            n_residues=int(res.n_residues), n_atoms=int(g.n_atoms),
+            atom_start=int(idx.min()), atom_stop=int(idx.max()) + 1,
+            resid_first=int(res.resids.min()), resid_last=int(res.resids.max()),
+            sequence="".join(_ONE_LETTER.get(r.upper(), "X") for r in res.resnames)))
+    return out
 
 
 def _count_protein_chains(u: mda.Universe) -> list[int]:
@@ -259,6 +335,13 @@ def detect_system(topology: str | Path, coordinates: str | Path | None = None,
         ligand_resnames=sorted(set(ligand_resnames)),
         notes=notes,
     )
+    try:
+        info.chains = chain_records(u)
+    except Exception as exc:  # never let chain bookkeeping break detection
+        notes.append(f"chain records unavailable: {type(exc).__name__}")
+    resnames = [str(r).strip().upper() for r in u.residues.resnames]
+    for rn in sorted(set(resnames) & _IONS):
+        info.ion_counts[rn] = resnames.count(rn)
     info.selections = _build_selections(info)
     info.flags = _build_flags(info)
     info.system_type = _classify_system(info, peptide_cutoff)

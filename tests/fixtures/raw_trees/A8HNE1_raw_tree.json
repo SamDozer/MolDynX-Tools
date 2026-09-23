@@ -1,0 +1,2812 @@
+{
+ "root": "complex_A8HNE1",
+ "files": [
+  {
+   "path": "#step5_production.gro.1#",
+   "bytes": 108356265,
+   "mtime": "2026-06-04 05:52:14",
+   "note": ""
+  },
+  {
+   "path": "#step5_production.gro.2#",
+   "bytes": 108356265,
+   "mtime": "2026-06-16 02:15:04",
+   "note": ""
+  },
+  {
+   "path": "Production/.step5_production-002.xtc_offsets.npz",
+   "bytes": 9028,
+   "mtime": "2026-07-06 01:56:41",
+   "note": ""
+  },
+  {
+   "path": "Production/analysis/data/.protein.xtc_offsets.npz",
+   "bytes": 9028,
+   "mtime": "2026-07-06 02:16:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/data/meta.json",
+   "bytes": 21236,
+   "mtime": "2026-07-06 02:12:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/data/protein.pdb",
+   "bytes": 1389509,
+   "mtime": "2026-07-06 02:09:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/data/protein.xtc",
+   "bytes": 50635832,
+   "mtime": "2026-07-06 02:12:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_pca.pdf",
+   "bytes": 33016,
+   "mtime": "2026-07-06 03:30:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_pca.png",
+   "bytes": 185710,
+   "mtime": "2026-07-06 03:30:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_populations.pdf",
+   "bytes": 21180,
+   "mtime": "2026-07-06 03:30:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_populations.png",
+   "bytes": 80617,
+   "mtime": "2026-07-06 03:30:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_timeline.pdf",
+   "bytes": 17808,
+   "mtime": "2026-07-06 03:30:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/cluster_timeline.png",
+   "bytes": 48992,
+   "mtime": "2026-07-06 03:30:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_3d.pdf",
+   "bytes": 469859,
+   "mtime": "2026-07-06 03:28:14",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_3d.png",
+   "bytes": 423603,
+   "mtime": "2026-07-06 03:28:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_distance.pdf",
+   "bytes": 38102,
+   "mtime": "2026-07-06 03:28:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_distance.png",
+   "bytes": 205652,
+   "mtime": "2026-07-06 03:28:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_orientation.pdf",
+   "bytes": 38091,
+   "mtime": "2026-07-06 03:28:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/com_orientation.png",
+   "bytes": 257869,
+   "mtime": "2026-07-06 03:28:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_difference.pdf",
+   "bytes": 109258,
+   "mtime": "2026-07-06 03:28:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_difference.png",
+   "bytes": 194451,
+   "mtime": "2026-07-06 03:28:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_lifetime_distribution.pdf",
+   "bytes": 22002,
+   "mtime": "2026-07-10 22:52:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_lifetime_distribution.png",
+   "bytes": 83758,
+   "mtime": "2026-07-10 22:52:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_occupancy.pdf",
+   "bytes": 151887,
+   "mtime": "2026-07-06 03:28:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contact_occupancy.png",
+   "bytes": 242598,
+   "mtime": "2026-07-06 03:28:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contacts_vs_time.pdf",
+   "bytes": 33960,
+   "mtime": "2026-07-06 03:28:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/contacts_vs_time.png",
+   "bytes": 289742,
+   "mtime": "2026-07-06 03:28:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_blocks.pdf",
+   "bytes": 24245,
+   "mtime": "2026-07-06 03:38:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_blocks.png",
+   "bytes": 77393,
+   "mtime": "2026-07-06 03:38:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_halves.pdf",
+   "bytes": 26822,
+   "mtime": "2026-07-06 03:38:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_halves.png",
+   "bytes": 114778,
+   "mtime": "2026-07-06 03:38:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_running.pdf",
+   "bytes": 43636,
+   "mtime": "2026-07-06 03:38:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/convergence_running.png",
+   "bytes": 254777,
+   "mtime": "2026-07-06 03:38:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/correlation_pearson.pdf",
+   "bytes": 41383,
+   "mtime": "2026-07-06 03:38:52",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/correlation_pearson.png",
+   "bytes": 443754,
+   "mtime": "2026-07-06 03:38:51",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/correlation_spearman.pdf",
+   "bytes": 41855,
+   "mtime": "2026-07-06 03:38:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/correlation_spearman.png",
+   "bytes": 431160,
+   "mtime": "2026-07-06 03:38:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/dccm.pdf",
+   "bytes": 2425325,
+   "mtime": "2026-07-06 03:29:01",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/dccm.png",
+   "bytes": 2869402,
+   "mtime": "2026-07-06 03:29:00",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/dccm_interchain.pdf",
+   "bytes": 1244920,
+   "mtime": "2026-07-06 03:29:03",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/dccm_interchain.png",
+   "bytes": 1488455,
+   "mtime": "2026-07-06 03:29:02",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/energies.pdf",
+   "bytes": 370283,
+   "mtime": "2026-07-06 03:14:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/energies.png",
+   "bytes": 410275,
+   "mtime": "2026-07-06 03:14:22",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/essential_dynamics_overlap.pdf",
+   "bytes": 35225,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/essential_dynamics_overlap.png",
+   "bytes": 93328,
+   "mtime": "2026-07-06 03:38:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/hbonds_occupancy.pdf",
+   "bytes": 26248,
+   "mtime": "2026-07-06 03:37:55",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/hbonds_occupancy.png",
+   "bytes": 187783,
+   "mtime": "2026-07-06 03:37:55",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/hbonds_timeseries.pdf",
+   "bytes": 45546,
+   "mtime": "2026-07-06 03:37:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/hbonds_timeseries.png",
+   "bytes": 460147,
+   "mtime": "2026-07-06 03:37:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_contact_map.pdf",
+   "bytes": 53252,
+   "mtime": "2026-07-06 03:28:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_contact_map.png",
+   "bytes": 129708,
+   "mtime": "2026-07-06 03:28:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_mindist.pdf",
+   "bytes": 45565,
+   "mtime": "2026-07-06 03:28:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_mindist.png",
+   "bytes": 373687,
+   "mtime": "2026-07-06 03:28:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_residues.pdf",
+   "bytes": 37748,
+   "mtime": "2026-07-06 03:28:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/interface_residues.png",
+   "bytes": 138933,
+   "mtime": "2026-07-06 03:28:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contact_map.pdf",
+   "bytes": 91023,
+   "mtime": "2026-07-06 03:28:21",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contact_map.png",
+   "bytes": 139516,
+   "mtime": "2026-07-06 03:28:21",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contact_survival.pdf",
+   "bytes": 37984,
+   "mtime": "2026-07-10 22:52:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contact_survival.png",
+   "bytes": 142200,
+   "mtime": "2026-07-10 22:52:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contacts_Q.pdf",
+   "bytes": 31153,
+   "mtime": "2026-07-06 03:28:20",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/native_contacts_Q.png",
+   "bytes": 121613,
+   "mtime": "2026-07-06 03:28:20",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/network_betweenness.pdf",
+   "bytes": 193746,
+   "mtime": "2026-07-10 22:52:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/network_betweenness.png",
+   "bytes": 323393,
+   "mtime": "2026-07-10 22:52:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/network_communities.pdf",
+   "bytes": 40497,
+   "mtime": "2026-07-10 22:52:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/network_communities.png",
+   "bytes": 276119,
+   "mtime": "2026-07-10 22:52:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_covariance.pdf",
+   "bytes": 1751209,
+   "mtime": "2026-07-06 03:29:11",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_covariance.png",
+   "bytes": 2143455,
+   "mtime": "2026-07-06 03:29:10",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_eigenvalues.pdf",
+   "bytes": 21746,
+   "mtime": "2026-07-10 22:41:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_eigenvalues.png",
+   "bytes": 101979,
+   "mtime": "2026-07-10 22:41:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel.pdf",
+   "bytes": 99288,
+   "mtime": "2026-07-06 03:29:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel.png",
+   "bytes": 83425,
+   "mtime": "2026-07-06 03:29:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel_A8HNE1.pdf",
+   "bytes": 101134,
+   "mtime": "2026-07-06 03:29:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel_A8HNE1.png",
+   "bytes": 87195,
+   "mtime": "2026-07-06 03:29:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel_BiP.pdf",
+   "bytes": 100743,
+   "mtime": "2026-07-06 03:29:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_fel_BiP.png",
+   "bytes": 101654,
+   "mtime": "2026-07-06 03:29:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2.pdf",
+   "bytes": 46930,
+   "mtime": "2026-07-06 03:29:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2.png",
+   "bytes": 604733,
+   "mtime": "2026-07-06 03:29:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2_A8HNE1.pdf",
+   "bytes": 47716,
+   "mtime": "2026-07-06 03:29:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2_A8HNE1.png",
+   "bytes": 489930,
+   "mtime": "2026-07-06 03:29:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2_BiP.pdf",
+   "bytes": 46927,
+   "mtime": "2026-07-06 03:29:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc1_pc2_BiP.png",
+   "bytes": 643193,
+   "mtime": "2026-07-06 03:29:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc_time.pdf",
+   "bytes": 35976,
+   "mtime": "2026-07-06 03:29:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_pc_time.png",
+   "bytes": 247471,
+   "mtime": "2026-07-06 03:29:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_scree.pdf",
+   "bytes": 23895,
+   "mtime": "2026-07-10 22:41:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_scree.png",
+   "bytes": 133345,
+   "mtime": "2026-07-10 22:41:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance.pdf",
+   "bytes": 23128,
+   "mtime": "2026-07-06 03:29:11",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance.png",
+   "bytes": 128649,
+   "mtime": "2026-07-06 03:29:11",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance_A8HNE1.pdf",
+   "bytes": 23751,
+   "mtime": "2026-07-06 03:29:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance_A8HNE1.png",
+   "bytes": 126954,
+   "mtime": "2026-07-06 03:29:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance_BiP.pdf",
+   "bytes": 22857,
+   "mtime": "2026-07-06 03:29:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/pca_variance_BiP.png",
+   "bytes": 130404,
+   "mtime": "2026-07-06 03:29:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/porcupine_pc1.pdf",
+   "bytes": 85472,
+   "mtime": "2026-07-10 22:41:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/porcupine_pc1.png",
+   "bytes": 1014888,
+   "mtime": "2026-07-10 22:41:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/prolif_interaction_types.pdf",
+   "bytes": 23136,
+   "mtime": "2026-07-06 03:38:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/prolif_interaction_types.png",
+   "bytes": 98584,
+   "mtime": "2026-07-06 03:38:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/prolif_residue_frequency.pdf",
+   "bytes": 27514,
+   "mtime": "2026-07-06 03:38:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/prolif_residue_frequency.png",
+   "bytes": 196305,
+   "mtime": "2026-07-06 03:38:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ramachandran_before_after.pdf",
+   "bytes": 50482,
+   "mtime": "2026-07-06 03:30:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ramachandran_before_after.png",
+   "bytes": 419203,
+   "mtime": "2026-07-06 03:30:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ramachandran_density.pdf",
+   "bytes": 193464,
+   "mtime": "2026-07-06 03:30:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ramachandran_density.png",
+   "bytes": 93423,
+   "mtime": "2026-07-06 03:30:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_hubs.pdf",
+   "bytes": 19278,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_hubs.png",
+   "bytes": 97063,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_interface_network.pdf",
+   "bytes": 17446,
+   "mtime": "2026-07-06 03:38:08",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_interface_network.png",
+   "bytes": 566269,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_network.pdf",
+   "bytes": 191888,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rin_network.png",
+   "bytes": 255567,
+   "mtime": "2026-07-06 03:38:06",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rmsd.pdf",
+   "bytes": 55777,
+   "mtime": "2026-07-06 03:14:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rmsd.png",
+   "bytes": 274614,
+   "mtime": "2026-07-06 03:14:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rmsf.pdf",
+   "bytes": 42322,
+   "mtime": "2026-07-06 03:14:43",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rmsf.png",
+   "bytes": 253509,
+   "mtime": "2026-07-06 03:14:43",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rog.pdf",
+   "bytes": 66767,
+   "mtime": "2026-07-06 03:14:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/rog.png",
+   "bytes": 348208,
+   "mtime": "2026-07-06 03:14:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/salt_bridges_occupancy.pdf",
+   "bytes": 23314,
+   "mtime": "2026-07-06 03:30:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/salt_bridges_occupancy.png",
+   "bytes": 81043,
+   "mtime": "2026-07-06 03:30:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/salt_bridges_timeseries.pdf",
+   "bytes": 34383,
+   "mtime": "2026-07-06 03:30:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/salt_bridges_timeseries.png",
+   "bytes": 147115,
+   "mtime": "2026-07-06 03:30:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/sasa_per_residue.pdf",
+   "bytes": 42534,
+   "mtime": "2026-07-06 03:28:10",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/sasa_per_residue.png",
+   "bytes": 82273,
+   "mtime": "2026-07-06 03:28:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/sasa_timeseries.pdf",
+   "bytes": 58554,
+   "mtime": "2026-07-06 03:28:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/sasa_timeseries.png",
+   "bytes": 396430,
+   "mtime": "2026-07-06 03:28:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ss_fractions.pdf",
+   "bytes": 49982,
+   "mtime": "2026-07-06 03:30:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ss_fractions.png",
+   "bytes": 246187,
+   "mtime": "2026-07-06 03:30:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ss_timeline.pdf",
+   "bytes": 51858,
+   "mtime": "2026-07-06 03:30:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/ss_timeline.png",
+   "bytes": 134816,
+   "mtime": "2026-07-06 03:30:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/structural_descriptors.pdf",
+   "bytes": 85940,
+   "mtime": "2026-07-06 03:14:56",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/structural_descriptors.png",
+   "bytes": 533449,
+   "mtime": "2026-07-06 03:14:56",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/water_bridge_timeseries.pdf",
+   "bytes": 23194,
+   "mtime": "2026-07-10 22:52:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/figures/water_bridge_timeseries.png",
+   "bytes": 169017,
+   "mtime": "2026-07-10 22:52:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/report/analysis_report.md",
+   "bytes": 17441,
+   "mtime": "2026-07-10 22:52:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/report/mmgbsa_workflow.md",
+   "bytes": 1485,
+   "mtime": "2026-07-10 22:41:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/advanced_summary.json",
+   "bytes": 4216,
+   "mtime": "2026-07-10 22:52:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/block_averages.csv",
+   "bytes": 686,
+   "mtime": "2026-07-06 03:38:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/cluster_assignments.csv",
+   "bytes": 7926,
+   "mtime": "2026-07-06 03:30:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/cluster_populations.csv",
+   "bytes": 124,
+   "mtime": "2026-07-06 03:30:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/cluster_silhouette.csv",
+   "bytes": 168,
+   "mtime": "2026-07-06 03:30:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/cluster_structures/cluster_01.pdb",
+   "bytes": 1084361,
+   "mtime": "2026-07-06 03:30:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/cluster_structures/cluster_02.pdb",
+   "bytes": 1084361,
+   "mtime": "2026-07-06 03:30:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/com.csv",
+   "bytes": 154787,
+   "mtime": "2026-07-06 03:28:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/contact_lifetime.csv",
+   "bytes": 24943,
+   "mtime": "2026-07-10 22:52:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/contact_occupancy.csv",
+   "bytes": 3021172,
+   "mtime": "2026-07-06 03:28:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/contacts_vs_time.csv",
+   "bytes": 20584,
+   "mtime": "2026-07-06 03:28:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/convergence_summary.csv",
+   "bytes": 386,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/correlation_pearson.csv",
+   "bytes": 3425,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/correlation_spearman.csv",
+   "bytes": 3451,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/dccm.csv",
+   "bytes": 8030310,
+   "mtime": "2026-07-06 03:28:59",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/energies.csv",
+   "bytes": 4867613,
+   "mtime": "2026-07-06 03:14:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/hbonds_lifetime_autocorr.csv",
+   "bytes": 728,
+   "mtime": "2026-07-06 03:37:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/hbonds_occupancy.csv",
+   "bytes": 136635,
+   "mtime": "2026-07-06 03:37:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/hbonds_timeseries.csv",
+   "bytes": 31391,
+   "mtime": "2026-07-06 03:37:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/interface_contact_frequency.csv",
+   "bytes": 507043,
+   "mtime": "2026-07-06 03:28:49",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/interface_residues.csv",
+   "bytes": 17698,
+   "mtime": "2026-07-06 03:28:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/interface_timeseries.csv",
+   "bytes": 37072,
+   "mtime": "2026-07-06 03:28:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/metrics_merged.csv",
+   "bytes": 167892,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/native_contact_survival.csv",
+   "bytes": 25409,
+   "mtime": "2026-07-10 22:52:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/native_contacts.csv",
+   "bytes": 43699,
+   "mtime": "2026-07-06 03:28:20",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_eigenvalues.csv",
+   "bytes": 95323,
+   "mtime": "2026-07-06 03:29:08",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_eigenvalues_A8HNE1.csv",
+   "bytes": 23408,
+   "mtime": "2026-07-06 03:29:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_eigenvalues_BiP.csv",
+   "bytes": 76217,
+   "mtime": "2026-07-06 03:29:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_fel.csv",
+   "bytes": 21580,
+   "mtime": "2026-07-06 03:29:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_fel_A8HNE1.csv",
+   "bytes": 18671,
+   "mtime": "2026-07-06 03:29:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_fel_BiP.csv",
+   "bytes": 21942,
+   "mtime": "2026-07-06 03:29:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_projections.csv",
+   "bytes": 57327,
+   "mtime": "2026-07-06 03:29:08",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_projections_A8HNE1.csv",
+   "bytes": 58478,
+   "mtime": "2026-07-06 03:29:17",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pca_projections_BiP.csv",
+   "bytes": 57629,
+   "mtime": "2026-07-06 03:29:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/pipeline_summary.json",
+   "bytes": 48490,
+   "mtime": "2026-07-06 03:38:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/porcupine_pc1.csv",
+   "bytes": 43120,
+   "mtime": "2026-07-10 22:41:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/porcupine_pc1.pdb",
+   "bytes": 1394623,
+   "mtime": "2026-07-10 22:41:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/prolif_interaction_types.csv",
+   "bytes": 115,
+   "mtime": "2026-07-06 03:38:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/prolif_residue_frequency.csv",
+   "bytes": 5203,
+   "mtime": "2026-07-06 03:38:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/ramachandran_first_last.csv",
+   "bytes": 65601,
+   "mtime": "2026-07-06 03:30:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rin_edges.csv",
+   "bytes": 40024,
+   "mtime": "2026-07-06 03:37:59",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rin_interface_edges.csv",
+   "bytes": 1634,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rin_interface_nodes.csv",
+   "bytes": 1910,
+   "mtime": "2026-07-06 03:38:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rin_node_metrics.csv",
+   "bytes": 47440,
+   "mtime": "2026-07-06 03:38:04",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rmsd.csv",
+   "bytes": 137721,
+   "mtime": "2026-07-06 03:14:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rmsf.csv",
+   "bytes": 33021,
+   "mtime": "2026-07-06 03:14:42",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/rog.csv",
+   "bytes": 116547,
+   "mtime": "2026-07-06 03:14:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/salt_bridges_occupancy.csv",
+   "bytes": 8948,
+   "mtime": "2026-07-06 03:30:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/salt_bridges_timeseries.csv",
+   "bytes": 25391,
+   "mtime": "2026-07-06 03:30:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/sasa_per_residue.csv",
+   "bytes": 30051,
+   "mtime": "2026-07-06 03:28:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/sasa_total.csv",
+   "bytes": 101460,
+   "mtime": "2026-07-06 03:28:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/ss_fractions.csv",
+   "bytes": 102312,
+   "mtime": "2026-07-06 03:30:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/ss_per_residue.csv",
+   "bytes": 31261,
+   "mtime": "2026-07-06 03:30:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/ss_timeline.csv",
+   "bytes": 1710901,
+   "mtime": "2026-07-06 03:30:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/structural.csv",
+   "bytes": 135830,
+   "mtime": "2026-07-06 03:14:55",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/results/water_bridges.csv",
+   "bytes": 505,
+   "mtime": "2026-07-10 22:52:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/energy_summary.csv",
+   "bytes": 997,
+   "mtime": "2026-07-06 03:14:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/hbonds_donor_acceptor.csv",
+   "bytes": 2887,
+   "mtime": "2026-07-06 03:37:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/mmgbsa_run.sh",
+   "bytes": 1052,
+   "mtime": "2026-07-10 22:41:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/mmpbsa.in",
+   "bytes": 630,
+   "mtime": "2026-07-10 22:41:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/network_hubs.csv",
+   "bytes": 42536,
+   "mtime": "2026-07-10 22:52:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/pca_variance.csv",
+   "bytes": 167383,
+   "mtime": "2026-07-10 22:41:30",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/summary_statistics.csv",
+   "bytes": 1961,
+   "mtime": "2026-07-06 03:38:50",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis/tables/water_bridge_summary.csv",
+   "bytes": 5240,
+   "mtime": "2026-07-10 22:52:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/data/.protein.xtc_offsets.npz",
+   "bytes": 9028,
+   "mtime": "2026-07-26 13:47:59",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/data/meta.json",
+   "bytes": 21287,
+   "mtime": "2026-07-26 13:47:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/data/protein.pdb",
+   "bytes": 1389509,
+   "mtime": "2026-07-26 13:45:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/data/protein.xtc",
+   "bytes": 50635832,
+   "mtime": "2026-07-26 13:47:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_pca.pdf",
+   "bytes": 33016,
+   "mtime": "2026-07-26 14:03:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_pca.png",
+   "bytes": 185710,
+   "mtime": "2026-07-26 14:03:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_populations.pdf",
+   "bytes": 21180,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_populations.png",
+   "bytes": 80617,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_timeline.pdf",
+   "bytes": 17808,
+   "mtime": "2026-07-26 14:03:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/cluster_timeline.png",
+   "bytes": 48992,
+   "mtime": "2026-07-26 14:03:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_3d.pdf",
+   "bytes": 469859,
+   "mtime": "2026-07-26 14:01:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_3d.png",
+   "bytes": 423603,
+   "mtime": "2026-07-26 14:01:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_distance.pdf",
+   "bytes": 38102,
+   "mtime": "2026-07-26 14:01:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_distance.png",
+   "bytes": 205652,
+   "mtime": "2026-07-26 14:01:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_orientation.pdf",
+   "bytes": 38091,
+   "mtime": "2026-07-26 14:01:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/com_orientation.png",
+   "bytes": 257869,
+   "mtime": "2026-07-26 14:01:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_difference.pdf",
+   "bytes": 109258,
+   "mtime": "2026-07-26 14:01:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_difference.png",
+   "bytes": 194451,
+   "mtime": "2026-07-26 14:01:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_lifetime_distribution.pdf",
+   "bytes": 22002,
+   "mtime": "2026-07-26 14:22:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_lifetime_distribution.png",
+   "bytes": 83758,
+   "mtime": "2026-07-26 14:22:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_occupancy.pdf",
+   "bytes": 151887,
+   "mtime": "2026-07-26 14:01:56",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contact_occupancy.png",
+   "bytes": 242598,
+   "mtime": "2026-07-26 14:01:55",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contacts_vs_time.pdf",
+   "bytes": 33960,
+   "mtime": "2026-07-26 14:01:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/contacts_vs_time.png",
+   "bytes": 289742,
+   "mtime": "2026-07-26 14:01:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_blocks.pdf",
+   "bytes": 24245,
+   "mtime": "2026-07-26 14:12:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_blocks.png",
+   "bytes": 77393,
+   "mtime": "2026-07-26 14:12:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_halves.pdf",
+   "bytes": 26822,
+   "mtime": "2026-07-26 14:12:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_halves.png",
+   "bytes": 114778,
+   "mtime": "2026-07-26 14:12:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_running.pdf",
+   "bytes": 43636,
+   "mtime": "2026-07-26 14:12:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/convergence_running.png",
+   "bytes": 254777,
+   "mtime": "2026-07-26 14:12:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/correlation_pearson.pdf",
+   "bytes": 41383,
+   "mtime": "2026-07-26 14:12:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/correlation_pearson.png",
+   "bytes": 443754,
+   "mtime": "2026-07-26 14:12:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/correlation_spearman.pdf",
+   "bytes": 41855,
+   "mtime": "2026-07-26 14:12:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/correlation_spearman.png",
+   "bytes": 431160,
+   "mtime": "2026-07-26 14:12:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/dccm.pdf",
+   "bytes": 2425325,
+   "mtime": "2026-07-26 14:02:27",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/dccm.png",
+   "bytes": 2869402,
+   "mtime": "2026-07-26 14:02:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/dccm_interchain.pdf",
+   "bytes": 1244920,
+   "mtime": "2026-07-26 14:02:29",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/dccm_interchain.png",
+   "bytes": 1488455,
+   "mtime": "2026-07-26 14:02:28",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/energies.pdf",
+   "bytes": 370283,
+   "mtime": "2026-07-26 13:47:58",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/energies.png",
+   "bytes": 410275,
+   "mtime": "2026-07-26 13:47:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/essential_dynamics_overlap.pdf",
+   "bytes": 35225,
+   "mtime": "2026-07-26 14:12:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/essential_dynamics_overlap.png",
+   "bytes": 93328,
+   "mtime": "2026-07-26 14:12:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/hbonds_occupancy.pdf",
+   "bytes": 26248,
+   "mtime": "2026-07-26 14:11:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/hbonds_occupancy.png",
+   "bytes": 187783,
+   "mtime": "2026-07-26 14:11:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/hbonds_timeseries.pdf",
+   "bytes": 45546,
+   "mtime": "2026-07-26 14:11:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/hbonds_timeseries.png",
+   "bytes": 460147,
+   "mtime": "2026-07-26 14:11:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_contact_map.pdf",
+   "bytes": 53252,
+   "mtime": "2026-07-26 14:02:16",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_contact_map.png",
+   "bytes": 129708,
+   "mtime": "2026-07-26 14:02:16",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_mindist.pdf",
+   "bytes": 45565,
+   "mtime": "2026-07-26 14:02:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_mindist.png",
+   "bytes": 373687,
+   "mtime": "2026-07-26 14:02:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_residues.pdf",
+   "bytes": 37748,
+   "mtime": "2026-07-26 14:02:15",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/interface_residues.png",
+   "bytes": 138933,
+   "mtime": "2026-07-26 14:02:14",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contact_map.pdf",
+   "bytes": 91023,
+   "mtime": "2026-07-26 14:01:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contact_map.png",
+   "bytes": 139516,
+   "mtime": "2026-07-26 14:01:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contact_survival.pdf",
+   "bytes": 37984,
+   "mtime": "2026-07-26 14:22:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contact_survival.png",
+   "bytes": 142200,
+   "mtime": "2026-07-26 14:22:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contacts_Q.pdf",
+   "bytes": 31153,
+   "mtime": "2026-07-26 14:01:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/native_contacts_Q.png",
+   "bytes": 121613,
+   "mtime": "2026-07-26 14:01:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/network_betweenness.pdf",
+   "bytes": 193746,
+   "mtime": "2026-07-26 14:22:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/network_betweenness.png",
+   "bytes": 323393,
+   "mtime": "2026-07-26 14:22:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/network_communities.pdf",
+   "bytes": 40497,
+   "mtime": "2026-07-26 14:22:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/network_communities.png",
+   "bytes": 276119,
+   "mtime": "2026-07-26 14:22:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_covariance.pdf",
+   "bytes": 1751209,
+   "mtime": "2026-07-26 14:02:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_covariance.png",
+   "bytes": 2143455,
+   "mtime": "2026-07-26 14:02:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_eigenvalues.pdf",
+   "bytes": 21746,
+   "mtime": "2026-07-26 14:12:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_eigenvalues.png",
+   "bytes": 101979,
+   "mtime": "2026-07-26 14:12:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel.pdf",
+   "bytes": 99288,
+   "mtime": "2026-07-26 14:02:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel.png",
+   "bytes": 83425,
+   "mtime": "2026-07-26 14:02:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel_A8HNE1.pdf",
+   "bytes": 101134,
+   "mtime": "2026-07-26 14:02:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel_A8HNE1.png",
+   "bytes": 87195,
+   "mtime": "2026-07-26 14:02:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel_BiP.pdf",
+   "bytes": 100743,
+   "mtime": "2026-07-26 14:02:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_fel_BiP.png",
+   "bytes": 101654,
+   "mtime": "2026-07-26 14:02:52",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2.pdf",
+   "bytes": 46930,
+   "mtime": "2026-07-26 14:02:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2.png",
+   "bytes": 604733,
+   "mtime": "2026-07-26 14:02:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2_A8HNE1.pdf",
+   "bytes": 47716,
+   "mtime": "2026-07-26 14:02:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2_A8HNE1.png",
+   "bytes": 489930,
+   "mtime": "2026-07-26 14:02:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2_BiP.pdf",
+   "bytes": 46927,
+   "mtime": "2026-07-26 14:02:52",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc1_pc2_BiP.png",
+   "bytes": 643193,
+   "mtime": "2026-07-26 14:02:52",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc_time.pdf",
+   "bytes": 35976,
+   "mtime": "2026-07-26 14:02:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_pc_time.png",
+   "bytes": 247471,
+   "mtime": "2026-07-26 14:02:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_scree.pdf",
+   "bytes": 23895,
+   "mtime": "2026-07-26 14:12:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_scree.png",
+   "bytes": 133345,
+   "mtime": "2026-07-26 14:12:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance.pdf",
+   "bytes": 23128,
+   "mtime": "2026-07-26 14:02:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance.png",
+   "bytes": 128649,
+   "mtime": "2026-07-26 14:02:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance_A8HNE1.pdf",
+   "bytes": 23751,
+   "mtime": "2026-07-26 14:02:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance_A8HNE1.png",
+   "bytes": 126954,
+   "mtime": "2026-07-26 14:02:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance_BiP.pdf",
+   "bytes": 22857,
+   "mtime": "2026-07-26 14:02:51",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/pca_variance_BiP.png",
+   "bytes": 130404,
+   "mtime": "2026-07-26 14:02:51",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/porcupine_pc1.pdf",
+   "bytes": 85472,
+   "mtime": "2026-07-26 14:12:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/porcupine_pc1.png",
+   "bytes": 1014888,
+   "mtime": "2026-07-26 14:12:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/prolif_interaction_types.pdf",
+   "bytes": 23136,
+   "mtime": "2026-07-26 14:12:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/prolif_interaction_types.png",
+   "bytes": 98584,
+   "mtime": "2026-07-26 14:12:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/prolif_residue_frequency.pdf",
+   "bytes": 27514,
+   "mtime": "2026-07-26 14:12:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/prolif_residue_frequency.png",
+   "bytes": 196305,
+   "mtime": "2026-07-26 14:12:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ramachandran_before_after.pdf",
+   "bytes": 50482,
+   "mtime": "2026-07-26 14:04:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ramachandran_before_after.png",
+   "bytes": 419203,
+   "mtime": "2026-07-26 14:04:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ramachandran_density.pdf",
+   "bytes": 193464,
+   "mtime": "2026-07-26 14:04:14",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ramachandran_density.png",
+   "bytes": 93423,
+   "mtime": "2026-07-26 14:04:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_hubs.pdf",
+   "bytes": 19278,
+   "mtime": "2026-07-26 14:11:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_hubs.png",
+   "bytes": 97063,
+   "mtime": "2026-07-26 14:11:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_interface_network.pdf",
+   "bytes": 17446,
+   "mtime": "2026-07-26 14:11:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_interface_network.png",
+   "bytes": 566269,
+   "mtime": "2026-07-26 14:11:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_network.pdf",
+   "bytes": 191888,
+   "mtime": "2026-07-26 14:11:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rin_network.png",
+   "bytes": 255567,
+   "mtime": "2026-07-26 14:11:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rmsd.pdf",
+   "bytes": 55777,
+   "mtime": "2026-07-26 13:48:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rmsd.png",
+   "bytes": 274614,
+   "mtime": "2026-07-26 13:48:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rmsf.pdf",
+   "bytes": 42322,
+   "mtime": "2026-07-26 13:48:20",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rmsf.png",
+   "bytes": 253509,
+   "mtime": "2026-07-26 13:48:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rog.pdf",
+   "bytes": 66767,
+   "mtime": "2026-07-26 13:48:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/rog.png",
+   "bytes": 348208,
+   "mtime": "2026-07-26 13:48:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/salt_bridges_occupancy.pdf",
+   "bytes": 23314,
+   "mtime": "2026-07-26 14:04:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/salt_bridges_occupancy.png",
+   "bytes": 81043,
+   "mtime": "2026-07-26 14:04:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/salt_bridges_timeseries.pdf",
+   "bytes": 34383,
+   "mtime": "2026-07-26 14:04:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/salt_bridges_timeseries.png",
+   "bytes": 147115,
+   "mtime": "2026-07-26 14:04:09",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/sasa_per_residue.pdf",
+   "bytes": 42534,
+   "mtime": "2026-07-26 14:01:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/sasa_per_residue.png",
+   "bytes": 82273,
+   "mtime": "2026-07-26 14:01:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/sasa_timeseries.pdf",
+   "bytes": 58554,
+   "mtime": "2026-07-26 14:01:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/sasa_timeseries.png",
+   "bytes": 396430,
+   "mtime": "2026-07-26 14:01:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ss_fractions.pdf",
+   "bytes": 49982,
+   "mtime": "2026-07-26 14:04:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ss_fractions.png",
+   "bytes": 246187,
+   "mtime": "2026-07-26 14:04:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ss_timeline.pdf",
+   "bytes": 51858,
+   "mtime": "2026-07-26 14:04:07",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/ss_timeline.png",
+   "bytes": 134816,
+   "mtime": "2026-07-26 14:04:06",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/structural_descriptors.pdf",
+   "bytes": 85940,
+   "mtime": "2026-07-26 13:48:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/structural_descriptors.png",
+   "bytes": 533449,
+   "mtime": "2026-07-26 13:48:33",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/water_bridge_timeseries.pdf",
+   "bytes": 23194,
+   "mtime": "2026-07-26 14:22:27",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/figures/water_bridge_timeseries.png",
+   "bytes": 169017,
+   "mtime": "2026-07-26 14:22:27",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/report/analysis_report.md",
+   "bytes": 17441,
+   "mtime": "2026-07-26 14:22:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/report/mmgbsa_workflow.md",
+   "bytes": 1485,
+   "mtime": "2026-07-26 14:12:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/block_averages.csv",
+   "bytes": 686,
+   "mtime": "2026-07-26 14:12:24",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/cluster_assignments.csv",
+   "bytes": 7926,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/cluster_populations.csv",
+   "bytes": 124,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/cluster_silhouette.csv",
+   "bytes": 168,
+   "mtime": "2026-07-26 14:03:55",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/cluster_structures/cluster_01.pdb",
+   "bytes": 1084361,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/cluster_structures/cluster_02.pdb",
+   "bytes": 1084361,
+   "mtime": "2026-07-26 14:03:57",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/com.csv",
+   "bytes": 154787,
+   "mtime": "2026-07-26 14:01:36",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/contact_lifetime.csv",
+   "bytes": 24943,
+   "mtime": "2026-07-26 14:22:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/contact_occupancy.csv",
+   "bytes": 3021172,
+   "mtime": "2026-07-26 14:01:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/contacts_vs_time.csv",
+   "bytes": 20584,
+   "mtime": "2026-07-26 14:01:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/convergence_summary.csv",
+   "bytes": 386,
+   "mtime": "2026-07-26 14:12:34",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/correlation_pearson.csv",
+   "bytes": 3425,
+   "mtime": "2026-07-26 14:12:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/correlation_spearman.csv",
+   "bytes": 3451,
+   "mtime": "2026-07-26 14:12:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/dccm.csv",
+   "bytes": 8030310,
+   "mtime": "2026-07-26 14:02:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/energies.csv",
+   "bytes": 4867613,
+   "mtime": "2026-07-26 13:47:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/hbonds_lifetime_autocorr.csv",
+   "bytes": 728,
+   "mtime": "2026-07-26 14:11:37",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/hbonds_occupancy.csv",
+   "bytes": 136635,
+   "mtime": "2026-07-26 14:11:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/hbonds_timeseries.csv",
+   "bytes": 31391,
+   "mtime": "2026-07-26 14:11:25",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/interface_contact_frequency.csv",
+   "bytes": 507043,
+   "mtime": "2026-07-26 14:02:15",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/interface_residues.csv",
+   "bytes": 17698,
+   "mtime": "2026-07-26 14:02:13",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/interface_timeseries.csv",
+   "bytes": 37072,
+   "mtime": "2026-07-26 14:02:12",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/metrics_merged.csv",
+   "bytes": 167892,
+   "mtime": "2026-07-26 14:12:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/native_contact_survival.csv",
+   "bytes": 25409,
+   "mtime": "2026-07-26 14:22:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/native_contacts.csv",
+   "bytes": 43699,
+   "mtime": "2026-07-26 14:01:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_eigenvalues.csv",
+   "bytes": 95323,
+   "mtime": "2026-07-26 14:02:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_eigenvalues_A8HNE1.csv",
+   "bytes": 23408,
+   "mtime": "2026-07-26 14:02:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_eigenvalues_BiP.csv",
+   "bytes": 76217,
+   "mtime": "2026-07-26 14:02:51",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_fel.csv",
+   "bytes": 21580,
+   "mtime": "2026-07-26 14:02:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_fel_A8HNE1.csv",
+   "bytes": 18671,
+   "mtime": "2026-07-26 14:02:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_fel_BiP.csv",
+   "bytes": 21942,
+   "mtime": "2026-07-26 14:02:53",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_projections.csv",
+   "bytes": 57327,
+   "mtime": "2026-07-26 14:02:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_projections_A8HNE1.csv",
+   "bytes": 58478,
+   "mtime": "2026-07-26 14:02:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pca_projections_BiP.csv",
+   "bytes": 57629,
+   "mtime": "2026-07-26 14:02:51",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/pipeline_summary.json",
+   "bytes": 52596,
+   "mtime": "2026-07-26 14:22:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/porcupine_pc1.csv",
+   "bytes": 43120,
+   "mtime": "2026-07-26 14:12:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/porcupine_pc1.pdb",
+   "bytes": 1394623,
+   "mtime": "2026-07-26 14:12:47",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/prolif_interaction_types.csv",
+   "bytes": 115,
+   "mtime": "2026-07-26 14:12:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/prolif_residue_frequency.csv",
+   "bytes": 5203,
+   "mtime": "2026-07-26 14:12:23",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/ramachandran_first_last.csv",
+   "bytes": 65601,
+   "mtime": "2026-07-26 14:04:11",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rin_edges.csv",
+   "bytes": 40024,
+   "mtime": "2026-07-26 14:11:38",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rin_interface_edges.csv",
+   "bytes": 1634,
+   "mtime": "2026-07-26 14:11:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rin_interface_nodes.csv",
+   "bytes": 1910,
+   "mtime": "2026-07-26 14:11:46",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rin_node_metrics.csv",
+   "bytes": 47440,
+   "mtime": "2026-07-26 14:11:43",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rmsd.csv",
+   "bytes": 137721,
+   "mtime": "2026-07-26 13:48:05",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rmsf.csv",
+   "bytes": 33021,
+   "mtime": "2026-07-26 13:48:19",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/rog.csv",
+   "bytes": 116547,
+   "mtime": "2026-07-26 13:48:22",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/salt_bridges_occupancy.csv",
+   "bytes": 8948,
+   "mtime": "2026-07-26 14:04:08",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/salt_bridges_timeseries.csv",
+   "bytes": 25391,
+   "mtime": "2026-07-26 14:04:08",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/sasa_per_residue.csv",
+   "bytes": 30051,
+   "mtime": "2026-07-26 14:01:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/sasa_total.csv",
+   "bytes": 101460,
+   "mtime": "2026-07-26 14:01:31",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/ss_fractions.csv",
+   "bytes": 102312,
+   "mtime": "2026-07-26 14:04:04",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/ss_per_residue.csv",
+   "bytes": 31261,
+   "mtime": "2026-07-26 14:04:04",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/ss_timeline.csv",
+   "bytes": 1710901,
+   "mtime": "2026-07-26 14:04:04",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/structural.csv",
+   "bytes": 135830,
+   "mtime": "2026-07-26 13:48:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/results/water_bridges.csv",
+   "bytes": 505,
+   "mtime": "2026-07-26 14:22:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/energy_summary.csv",
+   "bytes": 997,
+   "mtime": "2026-07-26 13:47:54",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/hbonds_donor_acceptor.csv",
+   "bytes": 2887,
+   "mtime": "2026-07-26 14:11:32",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/mmgbsa_run.sh",
+   "bytes": 1052,
+   "mtime": "2026-07-26 14:12:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/mmpbsa.in",
+   "bytes": 630,
+   "mtime": "2026-07-26 14:12:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/network_hubs.csv",
+   "bytes": 42536,
+   "mtime": "2026-07-26 14:22:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/pca_variance.csv",
+   "bytes": 167383,
+   "mtime": "2026-07-26 14:12:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/summary_statistics.csv",
+   "bytes": 1961,
+   "mtime": "2026-07-26 14:12:35",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/analysis_nopbc/tables/water_bridge_summary.csv",
+   "bytes": 5240,
+   "mtime": "2026-07-26 14:22:26",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/index.ndx",
+   "bytes": 46005260,
+   "mtime": "2026-06-16 08:39:22",
+   "note": ""
+  },
+  {
+   "path": "Production/mdout.mdp",
+   "bytes": 10815,
+   "mtime": "2026-06-04 15:41:00",
+   "note": ""
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmgbsa_hotspots.pdf",
+   "bytes": 42383,
+   "mtime": "2026-09-22 03:29:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmgbsa_hotspots.png",
+   "bytes": 316274,
+   "mtime": "2026-09-22 03:29:43",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmgbsa_per_residue_profile.pdf",
+   "bytes": 33807,
+   "mtime": "2026-09-22 03:29:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmgbsa_per_residue_profile.png",
+   "bytes": 144645,
+   "mtime": "2026-09-22 03:29:44",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_components.pdf",
+   "bytes": 27912,
+   "mtime": "2026-09-22 03:29:42",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_components.png",
+   "bytes": 99589,
+   "mtime": "2026-09-22 03:29:42",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_dG_timeseries.pdf",
+   "bytes": 33033,
+   "mtime": "2026-09-22 03:29:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_dG_timeseries.png",
+   "bytes": 341101,
+   "mtime": "2026-09-22 03:29:41",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_gb_vs_pb.pdf",
+   "bytes": 23909,
+   "mtime": "2026-09-22 03:29:42",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/figures/mmpbsa_gb_vs_pb.png",
+   "bytes": 162132,
+   "mtime": "2026-09-22 03:29:42",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/mmpbsa_summary.json",
+   "bytes": 3157,
+   "mtime": "2026-09-22 03:29:45",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/tables/mmgbsa_decomp_per_residue.csv",
+   "bytes": 7962,
+   "mtime": "2026-09-22 03:29:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/tables/mmgbsa_saltbridge_crosscheck.csv",
+   "bytes": 378,
+   "mtime": "2026-09-22 03:29:40",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/tables/mmpbsa_per_frame.csv",
+   "bytes": 6806,
+   "mtime": "2026-09-22 03:29:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/tables/mmpbsa_summary.csv",
+   "bytes": 927,
+   "mtime": "2026-09-22 03:29:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/analysis/tables/mmpbsa_windows.csv",
+   "bytes": 592,
+   "mtime": "2026-09-22 03:29:39",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/complex.ndx",
+   "bytes": 79358,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/complex.top",
+   "bytes": 417,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/FINAL_DECOMP_MMGBSA.csv",
+   "bytes": 4352430,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/FINAL_DECOMP_MMGBSA.dat",
+   "bytes": 727806,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/FINAL_RESULTS_MMGBSA.csv",
+   "bytes": 47163,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/FINAL_RESULTS_MMGBSA.dat",
+   "bytes": 11928,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/gmx_MMPBSA.log",
+   "bytes": 25228,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/gb/mmgbsa.in",
+   "bytes": 553,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/mmgbsa.in",
+   "bytes": 553,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/mmpbsa.in",
+   "bytes": 400,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/pb/FINAL_RESULTS_MMPBSA.csv",
+   "bytes": 48627,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/pb/FINAL_RESULTS_MMPBSA.dat",
+   "bytes": 9850,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/pb/gmx_MMPBSA.log",
+   "bytes": 22336,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/pb/mmpbsa.in",
+   "bytes": 400,
+   "mtime": "2026-09-22 02:40:18",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/mmpbsa_BiP2/production.log",
+   "bytes": 757,
+   "mtime": "2026-09-22 03:10:48",
+   "note": "earlier analysis output (must be ignored by discovery)"
+  },
+  {
+   "path": "Production/step5_production-002.xtc",
+   "bytes": 5966482016,
+   "mtime": "2026-07-05 21:30:56",
+   "note": ""
+  },
+  {
+   "path": "Production/step5_production.edr",
+   "bytes": 31801368,
+   "mtime": "2026-06-16 03:40:24",
+   "note": ""
+  },
+  {
+   "path": "Production/step5_production.gro",
+   "bytes": 108356265,
+   "mtime": "2026-06-16 03:40:24",
+   "note": ""
+  },
+  {
+   "path": "Production/step5_production.tpr",
+   "bytes": 43962680,
+   "mtime": "2026-06-04 03:38:44",
+   "note": ""
+  },
+  {
+   "path": "Production/topol.top",
+   "bytes": 503,
+   "mtime": "2026-07-10 21:57:56",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/CLA.itp",
+   "bytes": 334,
+   "mtime": "2026-05-18 09:19:20",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/POT.itp",
+   "bytes": 334,
+   "mtime": "2026-05-18 09:19:18",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/PROA.itp",
+   "bytes": 931681,
+   "mtime": "2026-05-18 09:18:32",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/PROB.itp",
+   "bytes": 3262655,
+   "mtime": "2026-05-18 09:19:16",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/TIP3.itp",
+   "bytes": 654,
+   "mtime": "2026-05-18 09:19:22",
+   "note": ""
+  },
+  {
+   "path": "Production/toppar/forcefield.itp",
+   "bytes": 113813,
+   "mtime": "2026-05-18 09:18:16",
+   "note": ""
+  },
+  {
+   "path": "filenames.txt",
+   "bytes": 2056,
+   "mtime": "2026-07-06 00:45:53",
+   "note": ""
+  },
+  {
+   "path": "run_100ns.sh",
+   "bytes": 1450,
+   "mtime": "2026-06-04 15:40:30",
+   "note": ""
+  },
+  {
+   "path": "run_A8HNE1_gpu.sh",
+   "bytes": 1722,
+   "mtime": "2026-06-03 18:02:14",
+   "note": ""
+  },
+  {
+   "path": "run_append_100ns.sh",
+   "bytes": 917,
+   "mtime": "2026-06-04 15:43:36",
+   "note": ""
+  },
+  {
+   "path": "step132b.pdb",
+   "bytes": 124060160,
+   "mtime": "2026-06-03 18:03:18",
+   "note": ""
+  },
+  {
+   "path": "step132c.pdb",
+   "bytes": 124060171,
+   "mtime": "2026-06-03 18:03:20",
+   "note": ""
+  },
+  {
+   "path": "step23b.pdb",
+   "bytes": 124060160,
+   "mtime": "2026-06-03 18:02:38",
+   "note": ""
+  },
+  {
+   "path": "step23c.pdb",
+   "bytes": 124060171,
+   "mtime": "2026-06-03 18:02:42",
+   "note": ""
+  },
+  {
+   "path": "step33b.pdb",
+   "bytes": 124060160,
+   "mtime": "2026-06-03 18:02:46",
+   "note": ""
+  },
+  {
+   "path": "step33c.pdb",
+   "bytes": 124060171,
+   "mtime": "2026-06-03 18:02:50",
+   "note": ""
+  },
+  {
+   "path": "step4.0_minimization.edr",
+   "bytes": 501892,
+   "mtime": "2026-06-03 18:11:18",
+   "note": ""
+  },
+  {
+   "path": "step4.0_minimization.gro",
+   "bytes": 70667145,
+   "mtime": "2026-06-03 18:11:22",
+   "note": ""
+  },
+  {
+   "path": "step4.0_minimization.log",
+   "bytes": 1290773,
+   "mtime": "2026-06-03 18:11:22",
+   "note": ""
+  },
+  {
+   "path": "step4.0_minimization.tpr",
+   "bytes": 22689636,
+   "mtime": "2026-06-03 18:02:26",
+   "note": ""
+  },
+  {
+   "path": "step4.0_minimization.trr",
+   "bytes": 18844680,
+   "mtime": "2026-06-03 18:11:22",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.cpt",
+   "bytes": 37691116,
+   "mtime": "2026-06-03 18:44:46",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.edr",
+   "bytes": 71728,
+   "mtime": "2026-06-03 18:44:50",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.gro",
+   "bytes": 108356265,
+   "mtime": "2026-06-03 18:44:50",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.log",
+   "bytes": 117117,
+   "mtime": "2026-06-03 18:44:50",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.tpr",
+   "bytes": 44674988,
+   "mtime": "2026-06-03 18:11:32",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration.xtc",
+   "bytes": 155316304,
+   "mtime": "2026-06-03 18:44:50",
+   "note": ""
+  },
+  {
+   "path": "step4.1_equilibration_prev.cpt",
+   "bytes": 37691116,
+   "mtime": "2026-06-03 18:44:46",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration-003.xtc",
+   "bytes": 2390248360,
+   "mtime": "2026-07-05 21:13:51",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration.cpt",
+   "bytes": 37691344,
+   "mtime": "2026-06-04 03:38:36",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration.edr",
+   "bytes": 1297404,
+   "mtime": "2026-06-04 03:38:38",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration.gro",
+   "bytes": 108356265,
+   "mtime": "2026-06-04 03:38:38",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration.log",
+   "bytes": 1423888,
+   "mtime": "2026-06-04 03:38:38",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration.tpr",
+   "bytes": 44674988,
+   "mtime": "2026-06-03 18:44:58",
+   "note": ""
+  },
+  {
+   "path": "step4.2_equilibration_prev.cpt",
+   "bytes": 37691344,
+   "mtime": "2026-06-04 03:38:36",
+   "note": ""
+  },
+  {
+   "path": "step48b.pdb",
+   "bytes": 124060160,
+   "mtime": "2026-06-03 18:02:56",
+   "note": ""
+  },
+  {
+   "path": "step48c.pdb",
+   "bytes": 124060171,
+   "mtime": "2026-06-03 18:02:58",
+   "note": ""
+  },
+  {
+   "path": "step5_production.cpt",
+   "bytes": 37691296,
+   "mtime": "2026-06-16 02:15:00",
+   "note": ""
+  },
+  {
+   "path": "step5_production.log",
+   "bytes": 33518187,
+   "mtime": "2026-06-16 03:40:24",
+   "note": ""
+  },
+  {
+   "path": "step5_production_prev.cpt",
+   "bytes": 37691296,
+   "mtime": "2026-06-16 02:15:00",
+   "note": ""
+  }
+ ],
+ "expected": {
+  "canonical_topology": "Production/step5_production.tpr",
+  "canonical_trajectory": "Production/step5_production-002.xtc",
+  "canonical_energy": "Production/step5_production.edr",
+  "canonical_log": "step5_production.log",
+  "gmx_top": "Production/topol.top",
+  "toppar_dir": "Production/toppar",
+  "equilibration": {
+   "EM": "step4.0_minimization",
+   "NVT": "step4.1_equilibration",
+   "NPT": "step4.2_equilibration"
+  },
+  "size_heuristic_would_pick": {
+   "topology": "step4.2_equilibration.tpr (44,674,988 B > production 43,962,680 B) -- WRONG",
+   "structure": "step33c.pdb, a minimisation crash dump (124 MB) -- WRONG",
+   "trajectory": "Production/step5_production-002.xtc -- right, by luck"
+  },
+  "missing_from_archive": [
+   "stage .mdp files",
+   "CHARMM-GUI package / step3_input.gro",
+   "step5_production_extended.tpr (convert-tpr -extend 99000)"
+  ]
+ }
+}

@@ -94,13 +94,20 @@ class RunManifest:
         self.data["system"] = system.to_dict()
 
     def set_inputs(self, fileset) -> None:
+        """Resolved inputs, *why* they were chosen, and fingerprints of everything used."""
         d = fileset.to_dict()
         fp = {}
-        for role in ("trajectory", "topology", "energy"):
-            p = getattr(fileset, role)
+        for role in ("trajectory", "topology", "energy", "log", "structure", "gmx_top", "index"):
+            p = getattr(fileset, role, None)
             if p is not None:
                 fp[role] = file_fingerprint(p)
-        self.data["inputs"] = {"resolved": d, "fingerprints": fp}
+        for stage in ("em", "nvt", "npt"):
+            for kind in ("tpr", "log", "edr"):
+                p = fileset.stage_file(stage, kind) if hasattr(fileset, "stage_file") else None
+                if p is not None:
+                    fp[f"{stage}_{kind}"] = file_fingerprint(p)
+        self.data["inputs"] = {"resolved": d, "fingerprints": fp,
+                               "evidence": getattr(fileset, "evidence", {})}
 
     def record_analysis(self, name: str, status: str, runtime_s: float,
                         summary: dict | None = None, error: str | None = None) -> None:

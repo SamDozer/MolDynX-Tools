@@ -3,10 +3,14 @@ MolDynX Tools (moldynx) command-line entry point.
 
 Subcommands
 -----------
+    moldynx intake   --input DIR [--output DIR]             which files, which run, what is missing
     moldynx analyze  --input DIR [--output DIR] [options]   run the pipeline
     moldynx detect   --input DIR                            detect system only
     moldynx list-analyses [--system TYPE]                   list available analyses
     moldynx version
+
+MolDynX never writes into the simulation folder: outputs default to
+./moldynx_results/<folder name>.
 """
 
 from __future__ import annotations
@@ -50,6 +54,21 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--plugin-dir", help="Extra directory of plugin modules.")
     a.add_argument("--interactive", action="store_true", help="Ask questions when ambiguous.")
     a.add_argument("--plan", action="store_true", help="Dry-run: show what would run and why.")
+    a.add_argument("--allow-ambiguous", dest="allow_ambiguous", action="store_true", default=None,
+                   help="Proceed (with warnings) when the production run is ambiguous.")
+    a.add_argument("--include-dir", dest="include_dir", action="append",
+                   help="Folder never to be treated as derived output (repeatable).")
+    a.add_argument("--pbc", choices=["auto", "none", "whole", "nojump"],
+                   help="Periodic-boundary treatment of the solute trajectory (default auto).")
+
+    it = sub.add_parser("intake", help="Report which files form the run and what is missing.")
+    _add_common(it)
+    it.add_argument("--no-deep", dest="deep", action="store_false",
+                    help="Names/stages only; do not read trajectory, run-input or log headers.")
+    it.add_argument("--detect", action="store_true",
+                    help="Also load the run input and describe chains, components and ions.")
+    it.add_argument("--allow-ambiguous", dest="allow_ambiguous", action="store_true")
+    it.add_argument("--include-dir", dest="include_dir", action="append")
 
     d = sub.add_parser("detect", help="Detect and print the system composition.")
     _add_common(d)
@@ -69,11 +88,48 @@ def _cmd_analyze(args) -> int:
     if cfg.input_dir is None:
         print("error: --input (or 'input_dir' in --config) is required.")
         return 2
-    if cfg.output_dir is None:
-        cfg.output_dir = cfg.input_dir / "moldynx_results"
+    if not args.output and "output_dir" not in _yaml_keys(args.config):
+        cfg.output_dir = default_output_dir(cfg.input_dir)
+    if args.include_dir:
+        cfg.include_dirs = list(cfg.include_dirs) + list(args.include_dir)
     ask = ask_choice if args.interactive else None
     run_pipeline(cfg, ask=ask, plan_only=args.plan)
     return 0
+
+
+def default_output_dir(input_dir) -> "Path":
+    """``./moldynx_results/<input folder name>`` -- never inside the simulation folder."""
+    from pathlib import Path
+    return Path.cwd() / "moldynx_results" / Path(input_dir).resolve().name
+
+
+def _yaml_keys(path) -> set:
+    if not path:
+        return set()
+    import yaml
+    from pathlib import Path
+    return set((yaml.safe_load(Path(path).read_text()) or {}).keys())
+
+
+def _cmd_intake(args) -> int:
+    from moldynx.io.intake import run_intake, write_intake
+    if not args.input:
+        print("error: --input is required.")
+        return 2
+    res = run_intake(args.input, deep=args.deep, detect=args.detect,
+                     allow_ambiguous=args.allow_ambiguous, include_dirs=args.include_dir)
+    out = args.output or default_output_dir(args.input) / "intake"
+    paths = write_intake(res, out)
+    fs, val = res.fileset, res.validation
+    print(f"trajectory : {fs.trajectory}")
+    print(f"run input  : {fs.topology}")
+    print(f"evidence   : {fs.evidence.get('trajectory_choice', '—')}")
+    print("\n" + val.capability_table())
+    if val.errors or val.warnings:
+        print("\n" + val.report())
+    for p in paths:
+        print(f"[intake] {p}")
+    return 0 if val.ok else 2
 
 
 def _cmd_detect(args) -> int:
@@ -134,7 +190,7 @@ def main(argv=None) -> int:
             return 1
         print(f"MolDynX Tools (moldynx) {__version__}")
         return 0
-    return {"analyze": _cmd_analyze, "detect": _cmd_detect,
+    return {"analyze": _cmd_analyze, "detect": _cmd_detect, "intake": _cmd_intake,
             "list-analyses": _cmd_list}[args.command](args)
 
 
