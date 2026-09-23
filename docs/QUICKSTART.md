@@ -1,4 +1,4 @@
-# mdforge — Quick Start
+# MolDynX Tools — Quick Start
 
 ## Install
 
@@ -16,7 +16,7 @@ python -m pip install -e .
 ## 1. Detect your system
 
 ```bash
-mdforge detect --input /path/to/simulation_dir
+moldynx detect --input /path/to/simulation_dir
 ```
 Prints the discovered files, validation status, and the detected composition
 (protein chains, ligands, nucleic acids, lipids, ions, water) and system type.
@@ -24,7 +24,7 @@ Prints the discovered files, validation status, and the detected composition
 ## 2. See what would run (dry-run)
 
 ```bash
-mdforge analyze --input /path/to/simulation_dir --plan
+moldynx analyze --input /path/to/simulation_dir --plan
 ```
 Shows which analyses are selected for the detected system — and *why* each other
 one was skipped.
@@ -32,7 +32,7 @@ one was skipped.
 ## 3. Run the full analysis
 
 ```bash
-mdforge analyze --input /path/to/simulation_dir --output results/
+moldynx analyze --input /path/to/simulation_dir --output results/
 ```
 Discovers files → detects the system → auto-selects analyses → runs them →
 writes CSVs, 300-dpi PNG+PDF figures, a `manifest.json/yaml` provenance record,
@@ -53,7 +53,7 @@ and a Markdown+HTML report.
 ## 4. Reproducible, config-driven workflow
 
 ```bash
-mdforge analyze --config examples/alpha_zein_A8HNE1/config.yaml
+moldynx analyze --config examples/alpha_zein_A8HNE1/config.yaml
 ```
 Every run writes a `manifest.json` capturing library versions, git commit, input
 fingerprints, seeds, parameters and per-analysis runtimes — enough for another
@@ -61,10 +61,10 @@ researcher to reproduce the analysis exactly.
 
 ## 5. Add your own analysis (plugin)
 
-Drop a file into `mdforge/analysis/plugins/` (or any `--plugin-dir`):
+Drop a file into `moldynx/analysis/plugins/` (or any `--plugin-dir`):
 
 ```python
-from mdforge.core.base import BaseAnalysis
+from moldynx.core.base import BaseAnalysis
 
 class MyAnalysis(BaseAnalysis):
     name = "my_analysis"
@@ -76,5 +76,5 @@ class MyAnalysis(BaseAnalysis):
         ctx.write_csv(df, "my_analysis.csv")
         return {"figure": "my_analysis"}
 ```
-It is auto-discovered and appears in `mdforge list-analyses` immediately.
-See `mdforge/analysis/plugins/example_end_to_end.py` for a complete template.
+It is auto-discovered and appears in `moldynx list-analyses` immediately.
+See `moldynx/analysis/plugins/example_end_to_end.py` for a complete template.

@@ -1,6 +1,6 @@
 {
-  "title": "mdforge: a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations",
-  "description": "mdforge turns a GROMACS simulation directory into a complete, publication-quality, fully reproducible analysis. It discovers files, detects the biomolecular system (protein / ligand / DNA / RNA / membrane / ions / multi-chain), auto-selects the appropriate analyses, runs them with streaming-friendly performance, and produces 300-dpi figures, a reproducibility manifest, and Markdown/HTML/PDF reports. Extensible via a plugin architecture and drivable from a single YAML config.",
+  "title": "MolDynX Tools (formerly mdforge): a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations",
+  "description": "MolDynX Tools (formerly mdforge) turns a GROMACS simulation directory into a complete, publication-quality, fully reproducible analysis. It discovers files, detects the biomolecular system (protein / ligand / DNA / RNA / membrane / ions / multi-chain), auto-selects the appropriate analyses, runs them with streaming-friendly performance, and produces 300-dpi figures, a reproducibility manifest, and Markdown/HTML/PDF reports. Extensible via a plugin architecture and drivable from a single YAML config.",
   "upload_type": "software",
   "license": "MIT",
   "access_right": "open",

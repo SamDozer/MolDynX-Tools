@@ -10,7 +10,9 @@ venv/
 .pytest_cache/
 .ruff_cache/
 
-# --- mdforge run outputs (regenerated) ------------------------------------
+# --- MolDynX Tools run outputs (regenerated; mdforge_* = pre-rename names) --
+moldynx_results/
+**/moldynx_out/
 mdforge_results/
 **/mdforge_out/
 core.pdb
@@ -32,6 +34,9 @@ data/
 step5_production.*
 step4_*.*
 toppar/
+
+# ...except the small, curated test fixtures (real trimmed logs, one small .edr)
+!tests/fixtures/**
 
 # --- OS cruft -------------------------------------------------------------
 .DS_Store

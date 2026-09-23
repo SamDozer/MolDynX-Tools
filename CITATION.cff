@@ -1,8 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "mdforge: a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations"
+title: "MolDynX Tools (formerly mdforge): a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations"
 abstract: >-
-  mdforge analyses GROMACS MD simulations of arbitrary biomolecular systems from
+  MolDynX Tools analyses GROMACS MD simulations of arbitrary biomolecular systems from
   a single simulation directory: it detects the system, auto-selects analyses,
   runs them with streaming performance, and produces publication-quality figures,
   a reproducibility manifest, and reports. Extensible via plugins and YAML config.

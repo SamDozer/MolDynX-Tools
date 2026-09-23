@@ -8,7 +8,7 @@ pandas>=2.0
 matplotlib>=3.7
 seaborn>=0.12
 tqdm>=4.65
-pyyaml>=6.0            # mdforge config-driven workflows
+pyyaml>=6.0            # MolDynX Tools config-driven workflows
 
 # MD trajectory analysis
 MDAnalysis>=2.7        # validated with 2.10.0

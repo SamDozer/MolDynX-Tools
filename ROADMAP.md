@@ -1,6 +1,6 @@
-# mdforge Roadmap
+# MolDynX Tools Roadmap
 
-> Turning mdforge from a solid single-run analyzer into a **comparative, parallel,
+> Turning MolDynX Tools from a solid single-run analyzer into a **comparative, parallel,
 > multi-engine** MD analysis platform — inspired by the best of
 > [MDAnalysis](https://github.com/MDAnalysis/mdanalysis) and
 > [mdtraj](https://github.com/mdtraj/mdtraj), built to give the user *more options*
@@ -29,11 +29,11 @@ architecture upgrades → testing/docs/release plan.
 
 ## 1. Design influences — what MDAnalysis & mdtraj do better, and what we adopt
 
-| Capability | Their approach | mdforge today | Planned adoption |
+| Capability | Their approach | MolDynX today | Planned adoption |
 |---|---|---|---|
 | **Per-frame analysis + parallelism** | MDAnalysis `AnalysisBase`: `_prepare/_single_frame/_conclude` + `run(backend="multiprocessing"/"dask", n_workers, n_parts)` with split-apply-combine (`_get_aggregator()` → `ResultsGroup`, `ndarray_vstack`) | `run(ctx)` monolithic, serial | **`FrameAnalysis` base** with the same lifecycle + a parallel executor (§4.1) |
 | **Ensemble similarity** | `encore`/`mdaencore`: `hes()`, `ces()`, `dres()`, `*_convergence()` (JS divergence between ensembles) | none | Wrap `mdaencore` for **comparison mode + convergence** (§3, §4.4) |
-| **Functional API** | mdtraj `compute_rmsd/dssp/contacts/gyration_tensor/…` — composable, notebook-friendly | class + CLI only | Add `mdforge.compute.*` thin functions (§4.2) |
+| **Functional API** | mdtraj `compute_rmsd/dssp/contacts/gyration_tensor/…` — composable, notebook-friendly | class + CLI only | Add `moldynx.compute.*` thin functions (§4.2) |
 | **Chunked streaming** | mdtraj `md.iterload(traj, chunk=100, top=…)` | pre-extract a solute trajectory once | Add real **chunked iteration** + keep extraction as an optimization (§4.3) |
 | **C-kernel speed** | mdtraj SIMD RMSD (QCP), contacts, SASA, DSSP, H-bonds | mixed (MDAnalysis Python loops in places) | Route hot paths (pairwise-RMSD, contacts, hbonds) through mdtraj kernels (§4.5) |
 | **On-the-fly transforms** | MDAnalysis `transformations` (unwrap/center/fit) composed on the trajectory | hard-coded unwrap in core extraction | Expose a **transform pipeline** via config (§4.6) |
@@ -41,7 +41,7 @@ architecture upgrades → testing/docs/release plan.
 | **Rich selections/options** | powerful selection DSL, updating selections, reference choices | fixed `protein`/`name CA` | Per-analysis **selection/reference/alignment/unit** options (§5) |
 | **Format breadth** | both read AMBER/NAMD/CHARMM/… by extension | GROMACS-centric discovery | Broaden discovery + detection to any MDAnalysis-readable engine (§v0.4) |
 
-**Principle:** *influence, not copy.* We reimplement the patterns against mdforge's
+**Principle:** *influence, not copy.* We reimplement the patterns against MolDynX's
 own `ctx`/registry design and add the comparison/report/detection layers those
 libraries deliberately leave out.
 
@@ -52,11 +52,11 @@ libraries deliberately leave out.
 - **Comparison & statistics** — overlays, difference maps, ensemble similarity, per-metric hypothesis tests, replica averaging.
 - **Performance** — parallel backends, chunked streaming, content-addressed cache/resume, benchmarks.
 - **Coverage** — membrane suite, multi-engine, validated complex modules, advanced dynamics (dPCA, LMI-DCCM, MSM).
-- **UX & ecosystem** — functional API, `rich` UI, interactive HTML, docs site, PyPI/conda-forge, `mdforge reproduce`.
+- **UX & ecosystem** — functional API, `rich` UI, interactive HTML, docs site, PyPI/conda-forge, `moldynx reproduce`.
 
 ---
 
-## 3. FLAGSHIP — Comparison mode (`mdforge compare`)  ⭐ v0.3
+## 3. FLAGSHIP — Comparison mode (`moldynx compare`)  ⭐ v0.3
 
 **Goal:** given several labeled systems — e.g. `control` (protein alone), `+ligand`,
 `+partner` (protein–protein) — analyze the **common entity** (the protein) in each
@@ -67,7 +67,7 @@ and answer *"what does binding/partnering do to the protein?"*.
 
 ```bash
 # explicit labels -> directories
-mdforge compare \
+moldynx compare \
     --system control=/runs/apo \
     --system holo=/runs/with_ligand \
     --system dimer=/runs/complex \
@@ -77,7 +77,7 @@ mdforge compare \
     --output compare_results/
 
 # or drive it from YAML for reproducibility / HPC
-mdforge compare --config compare.yaml
+moldynx compare --config compare.yaml
 ```
 
 ```yaml
@@ -111,7 +111,7 @@ report_formats: [md, html]
 ### 3.3 Design & pseudocode
 
 ```python
-# mdforge/compare/config.py
+# moldynx/compare/config.py
 @dataclass
 class CompareConfig:
     systems: dict[str, RunConfig]        # label -> per-system config
@@ -125,7 +125,7 @@ class CompareConfig:
 ```
 
 ```python
-# mdforge/compare/pipeline.py
+# moldynx/compare/pipeline.py
 def run_comparison(cfg: CompareConfig):
     # 1) Run each system through the normal pipeline, but RESTRICTED to the common
     #    selection so metrics are apples-to-apples. Reuse existing analyses.
@@ -160,7 +160,7 @@ def run_comparison(cfg: CompareConfig):
 ```
 
 ```python
-# mdforge/compare/overlay.py  — one figure, many systems
+# moldynx/compare/overlay.py  — one figure, many systems
 PALETTE_BY_LABEL = cycle_palette()   # deterministic, colour-blind-safe per label
 
 def timeseries(self, csv, col, ylabel):
@@ -184,7 +184,7 @@ def per_residue(self, csv, col, diff=True):
 ```
 
 ```python
-# mdforge/compare/subspace.py  — the key to a MEANINGFUL PCA comparison
+# moldynx/compare/subspace.py  — the key to a MEANINGFUL PCA comparison
 class CommonSubspace:
     """PCA eigenvectors from the reference ensemble; project any system into them."""
     def __init__(self, ref_ca_coords):                 # (n, 3N), aligned
@@ -197,7 +197,7 @@ class CommonSubspace:
 ```
 
 ```python
-# mdforge/compare/statistics.py
+# moldynx/compare/statistics.py
 def compare_statistics(per_system, tests):
     rows = []
     for metric in ("rmsd_backbone_nm", "rg_nm", "sasa_total_nm2"):
@@ -222,8 +222,8 @@ def ensemble_similarity(projections):
 ```
 
 ### 3.4 Tasks (v0.3 comparison)
-- [ ] `mdforge/compare/` package: `config.py`, `pipeline.py`, `overlay.py`, `subspace.py`, `statistics.py`, `report.py`.
-- [ ] `mdforge compare` CLI subcommand + YAML schema.
+- [ ] `moldynx/compare/` package: `config.py`, `pipeline.py`, `overlay.py`, `subspace.py`, `statistics.py`, `report.py`.
+- [ ] `moldynx compare` CLI subcommand + YAML schema.
 - [ ] Restrict per-system analyses to a shared `common_selection` (add a "common" param honored by RMSD/RMSF/Rg/PCA/…).
 - [ ] Common-subspace PCA projection + FEL difference.
 - [ ] ΔRMSF / ΔDCCM / Δcontact difference maps.
@@ -239,7 +239,7 @@ def ensemble_similarity(projections):
 ### 4.1 `FrameAnalysis` base with parallel execution (influence: MDAnalysis `AnalysisBase`)
 
 ```python
-# mdforge/core/frame_analysis.py
+# moldynx/core/frame_analysis.py
 class FrameAnalysis(BaseAnalysis):
     """Opt-in lifecycle base for per-frame analyses that can run in parallel."""
     parallelizable = True
@@ -270,8 +270,8 @@ interface/report modules stay on the simpler `BaseAnalysis`. Backward compatible
 ### 4.2 Functional API (influence: mdtraj `compute_*`)
 
 ```python
-# mdforge/compute.py  — notebook-friendly, no CLI needed
-import mdforge.compute as mfc
+# moldynx/compute.py  — notebook-friendly, no CLI needed
+import moldynx.compute as mfc
 rmsd  = mfc.rmsd(u, select="backbone", ref_frame=0)          # -> np.ndarray (nm)
 rg    = mfc.radius_of_gyration(u, select="protein")
 q     = mfc.native_contacts(u, cutoff=8.0)
@@ -283,7 +283,7 @@ sim   = mfc.ensemble_similarity([u_apo, u_holo])
 ### 4.3 Chunked streaming reader (influence: mdtraj `iterload`)
 
 ```python
-# mdforge/io/stream.py
+# moldynx/io/stream.py
 def iter_chunks(topology, trajectory, selection="all", chunk=200, stride=1):
     u = mda.Universe(topology, trajectory)
     ag = u.select_atoms(selection)
@@ -297,7 +297,7 @@ def iter_chunks(topology, trajectory, selection="all", chunk=200, stride=1):
 ```
 
 ### 4.4 Ensemble similarity + convergence module (influence: encore/mdaencore)
-`mdforge/analysis/ensemble_similarity.py` (`ensemble` group): CES/DRES/HES between
+`moldynx/analysis/ensemble_similarity.py` (`ensemble` group): CES/DRES/HES between
 systems (comparison mode) and `*_convergence` within a run (a rigorous alternative
 to the current RMSIP/block-averaging convergence check).
 
@@ -326,18 +326,18 @@ section and `manifest.json` records methods used → publishable provenance.
 - **Frames:** `--start/--end/--stride`, or `--frames "0:1000:2,1500,2000"`.
 - **Output:** `--figure-format png,pdf,svg`, `--dpi`, `--palette`, `--theme light|dark`.
 - **Analyses:** `--only-category structure`, `--exclude`, per-analysis params via YAML.
-- **Report:** `--report md,html,pdf`, `--no-figures`, `mdforge report <dir>` to regen.
+- **Report:** `--report md,html,pdf`, `--no-figures`, `moldynx report <dir>` to regen.
 
 ---
 
 ## 6. Versioned roadmap
 
 ### v0.3 — Comparison & parallelism  *(flagship)*
-- ⭐ `mdforge compare` (§3) — overlays, difference maps, common-subspace PCA, stats, ensemble similarity.
+- ⭐ `moldynx compare` (§3) — overlays, difference maps, common-subspace PCA, stats, ensemble similarity.
 - `FrameAnalysis` + parallel `--threads` backend (§4.1); wire `multiprocessing`.
-- Functional `mdforge.compute.*` API (§4.2).
+- Functional `moldynx.compute.*` API (§4.2).
 - Content-addressed **cache/resume** (skip unchanged analyses; checksum of inputs+params).
-- `mdforge reproduce manifest.json` (re-run a past run bit-for-bit).
+- `moldynx reproduce manifest.json` (re-run a past run bit-for-bit).
 - Expanded options (§5): reference/units/frames/selections.
 
 ### v0.4 — Coverage: membrane + multi-engine + validated complexes
@@ -354,7 +354,7 @@ section and `manifest.json` records methods used → publishable provenance.
 
 ### v0.6 — Robustness & UX polish
 - `rich` CLI (progress, tables, `--plan` pretty output).
-- `mdforge config init` scaffolder; user-extensible detection dictionaries.
+- `moldynx config init` scaffolder; user-extensible detection dictionaries.
 - Missing-hydrogen handling for H-bond analyses (optional protonation step).
 - Benchmark suite + performance regression guard.
 
@@ -377,7 +377,7 @@ section and `manifest.json` records methods used → publishable provenance.
 
 ## 8. Suggested execution order (next 3 PRs)
 
-1. **PR: comparison MVP** — `mdforge compare` with RMSD/RMSF/Rg/SASA overlays + ΔRMSF map + KS/Welch/Cohen table + comparative report. (Delivers the headline value fastest.)
+1. **PR: comparison MVP** — `moldynx compare` with RMSD/RMSF/Rg/SASA overlays + ΔRMSF map + KS/Welch/Cohen table + comparative report. (Delivers the headline value fastest.)
 2. **PR: `FrameAnalysis` + `--threads`** — parallel execution for the per-frame analyses; benchmark on the 4.35 GB reference trajectory.
 3. **PR: common-subspace PCA + FEL/DCCM difference + ensemble similarity** — completes the "what changed conformationally" story.
 
