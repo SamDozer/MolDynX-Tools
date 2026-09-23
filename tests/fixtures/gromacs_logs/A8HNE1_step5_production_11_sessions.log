@@ -1,0 +1,658 @@
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+
+Copyright 1991-2023 The GROMACS Authors.
+GROMACS is free software; you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
+as published by the Free Software Foundation; either version 2.1
+of the License, or (at your option) any later version.
+
+                         Current GROMACS contributors:
+       Mark Abraham           Andrey Alekseenko           Cathrine Bergh      
+      Christian Blau            Eliane Briand             Mahesh Doijade      
+    Stefan Fleischmann           Vytas Gapsys              Gaurav Garg        
+      Sergey Gorelov         Gilles Gouaillardet            Alan Gray         
+     M. Eric Irrgang         Farzaneh Jalalypour            Joe Jordan        
+    Christoph Junghans        Prashanth Kanduri          Sebastian Keller     
+     Carsten Kutzner           Justin A. Lemkul          Magnus Lundborg      
+       Pascal Merz              Vedran Miletic            Dmitry Morozov      
+       Szilard Pall             Roland Schulz             Michael Shirts      
+     Alexey Shvetsov            Balint Soproni         David van der Spoel    
+      Philip Turner             Carsten Uphoff           Alessandra Villa     
+ Sebastian Wingbermuehle        Artem Zhmurov       
+
+                         Previous GROMACS contributors:
+        Emile Apol             Rossen Apostolov           James Barnett       
+  Herman J.C. Berendsen          Par Bjelkmar           Viacheslav Bolnykh    
+        Kevin Boyd            Aldert van Buuren          Carlo Camilloni      
+     Rudi van Drunen            Anton Feenstra           Oliver Fleetwood     
+     Gerrit Groenhof            Bert de Groot             Anca Hamuraru       
+    Vincent Hindriksen          Victor Holanda           Aleksei Iupinov      
+   Dimitrios Karkoulis           Peter Kasson             Sebastian Kehl      
+        Jiri Kraus               Per Larsson              Viveca Lindahl      
+      Erik Marklund           Pieter Meulenhoff           Teemu Murtola       
+       Sander Pronk             Alfons Sijbers            Peter Tieleman      
+       Jon Vincent             Teemu Virolainen         Christian Wennberg    
+       Maarten Wolf       
+
+                  Coordinated by the GROMACS project leaders:
+                    Paul Bauer, Berk Hess, and Erik Lindahl
+
+GROMACS:      gmx mdrun, version 2023.3
+Executable:   /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+Data prefix:  /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0
+Working dir:  /cluster/project/MDS/output/complex_A8HNE1
+Process ID:   1001947
+Command line:
+  gmx mdrun -v -deffnm step5_production -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+GROMACS version:    2023.3
+Precision:          mixed
+Memory model:       64 bit
+MPI library:        thread_mpi
+OpenMP support:     enabled (GMX_OPENMP_MAX_THREADS = 128)
+GPU support:        CUDA
+NB cluster size:    8
+SIMD instructions:  AVX_512
+CPU FFT library:    fftw-3.3.10-sse2-avx-avx2-avx2_128
+GPU FFT library:    cuFFT
+Multi-GPU FFT:      none
+RDTSCP usage:       enabled
+TNG support:        enabled
+Hwloc support:      disabled
+Tracing support:    disabled
+C compiler:         /eb/software/OpenMPI/4.1.4-GCC-11.3.0/bin/mpicc GNU 11.3.0
+C compiler flags:   -fexcess-precision=fast -funroll-all-loops -mavx512f -mfma -mavx512vl -mavx512dq -mavx512bw -Wno-missing-field-initializers -O3 -DNDEBUG
+C++ compiler:       /eb/software/OpenMPI/4.1.4-GCC-11.3.0/bin/mpicxx GNU 11.3.0
+C++ compiler flags: -fexcess-precision=fast -funroll-all-loops -mavx512f -mfma -mavx512vl -mavx512dq -mavx512bw -Wno-missing-field-initializers -Wno-cast-function-type-strict -fopenmp -O3 -DNDEBUG
+BLAS library:       External - user-supplied
+LAPACK library:     External - user-supplied
+CUDA compiler:      /eb/software/CUDA/11.7.0/bin/nvcc nvcc: NVIDIA (R) Cuda compiler driver;Copyright (c) 2005-2022 NVIDIA Corporation;Built on Tue_May__3_18:49:52_PDT_2022;Cuda compilation tools, release 11.7, V11.7.64;Build cuda_11.7.r11.7/compiler.31294372_0
+CUDA compiler flags:-std=c++17;--generate-code=arch=compute_80,code=sm_80;--generate-code=arch=compute_70,code=sm_70;-use_fast_math;-Xptxas;-warn-double-usage;-Xptxas;-Werror;-D_FORCE_INLINES;-fexcess-precision=fast -funroll-all-loops -mavx512f -mfma -mavx512vl -mavx512dq -mavx512bw -Wno-missing-field-initializers -Wno-cast-function-type-strict -fopenmp -O3 -DNDEBUG
+CUDA driver:        13.0
+CUDA runtime:       11.70
+
+
+Running on 1 node with total 24 cores, 24 processing units, 3 compatible GPUs
+Hardware detected on host gpu05:
+  CPU info:
+    Vendor: Intel
+    Brand:  Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz
+    Family: 6   Model: 85   Stepping: 7
+    Features: aes apic avx avx2 avx512f avx512cd avx512bw avx512vl avx512secondFMA clfsh cmov cx8 cx16 f16c fma htt intel lahf mmx msr nonstop_tsc pcid pclmuldq pdcm pdpe1gb popcnt pse rdrnd rdtscp sse2 sse3 sse4.1 sse4.2 ssse3 tdt x2apic
+    Number of AVX-512 FMA units: 2
+  Hardware topology: Basic
+    Packages, cores, and logical processors:
+    [indices refer to OS logical processors]
+      Package  0: [   8] [   9] [  10] [  11] [  12] [  13] [  14] [  15] [  16] [  17] [  18] [  19]
+      Package  1: [  28] [  29] [  30] [  31] [  32] [  33] [  34] [  35] [  36] [  37] [  38] [  39]
+    CPU limit set by OS: -1   Recommended max number of threads: 24
+  GPU info:
+    Number of GPUs detected: 3
+    #0: NVIDIA Tesla V100-SXM2-32GB, compute cap.: 7.0, ECC: yes, stat: compatible
+    #1: NVIDIA Tesla V100-SXM2-32GB, compute cap.: 7.0, ECC: yes, stat: compatible
+    #2: NVIDIA Tesla V100-SXM2-32GB, compute cap.: 7.0, ECC: yes, stat: compatible
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+M. J. Abraham, T. Murtola, R. Schulz, S. Páll, J. C. Smith, B. Hess, E.
+Lindahl
+GROMACS: High performance molecular simulations through multi-level
+parallelism from laptops to supercomputers
+SoftwareX 1 (2015) pp. 19-25
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Páll, M. J. Abraham, C. Kutzner, B. Hess, E. Lindahl
+Tackling Exascale Software Challenges in Molecular Dynamics Simulations with
+GROMACS
+In S. Markidis & E. Laure (Eds.), Solving Software Challenges for Exascale 8759 (2015) pp. 3-27
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Pronk, S. Páll, R. Schulz, P. Larsson, P. Bjelkmar, R. Apostolov, M. R.
+Shirts, J. C. Smith, P. M. Kasson, D. van der Spoel, B. Hess, and E. Lindahl
+GROMACS 4.5: a high-throughput and highly parallel open source molecular
+simulation toolkit
+Bioinformatics 29 (2013) pp. 845-54
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and C. Kutzner and D. van der Spoel and E. Lindahl
+GROMACS 4: Algorithms for highly efficient, load-balanced, and scalable
+molecular simulation
+J. Chem. Theory Comput. 4 (2008) pp. 435-447
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+D. van der Spoel, E. Lindahl, B. Hess, G. Groenhof, A. E. Mark and H. J. C.
+Berendsen
+GROMACS: Fast, Flexible and Free
+J. Comp. Chem. 26 (2005) pp. 1701-1719
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+E. Lindahl and B. Hess and D. van der Spoel
+GROMACS 3.0: A package for molecular simulation and trajectory analysis
+J. Mol. Mod. 7 (2001) pp. 306-317
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+H. J. C. Berendsen, D. van der Spoel and R. van Drunen
+GROMACS: A message-passing parallel molecular dynamics implementation
+Comp. Phys. Comm. 91 (1995) pp. 43-56
+-------- -------- --- Thank You --- -------- --------
+
+
+++++ PLEASE CITE THE DOI FOR THIS VERSION OF GROMACS ++++
+https://doi.org/10.5281/zenodo.10017686
+-------- -------- --- Thank You --- -------- --------
+
+
+The number of OpenMP threads was set by environment variable OMP_NUM_THREADS to 8 (and the command-line setting agreed with that)
+
+Input Parameters:
+   integrator                     = md
+   tinit                          = 0
+   dt                             = 0.002
+   nsteps                         = 500000
+   init-step                      = 0
+   simulation-part                = 1
+   mts                            = false
+   comm-mode                      = Linear
+   nstcomm                        = 100
+   bd-fric                        = 0
+   ld-seed                        = -328278273
+   emtol                          = 10
+   emstep                         = 0.01
+   niter                          = 20
+   fcstep                         = 0
+   nstcgsteep                     = 1000
+   nbfgscorr                      = 10
+   rtpi                           = 0.05
+   nstxout                        = 0
+   nstvout                        = 0
+   nstfout                        = 0
+   nstlog                         = 1000
+   nstcalcenergy                  = 100
+   nstenergy                      = 1000
+   nstxout-compressed             = 50000
+   compressed-x-precision         = 1000
+   cutoff-scheme                  = Verlet
+   nstlist                        = 20
+   pbc                            = xyz
+   periodic-molecules             = false
+   verlet-buffer-tolerance        = 0.005
+   rlist                          = 1.226
+   coulombtype                    = PME
+   coulomb-modifier               = Potential-shift
+   rcoulomb-switch                = 0
+   rcoulomb                       = 1.2
+   epsilon-r                      = 1
+   epsilon-rf                     = inf
+   vdw-type                       = Cut-off
+   vdw-modifier                   = Force-switch
+   rvdw-switch                    = 1
+   rvdw                           = 1.2
+   DispCorr                       = No
+   table-extension                = 1
+   fourierspacing                 = 0.12
+   fourier-nx                     = 216
+   fourier-ny                     = 216
+   fourier-nz                     = 216
+   pme-order                      = 4
+   ewald-rtol                     = 1e-05
+   ewald-rtol-lj                  = 0.001
+   lj-pme-comb-rule               = Geometric
+   ewald-geometry                 = 3d
+   epsilon-surface                = 0
+   ensemble-temperature-setting   = constant
+   ensemble-temperature           = 303.15
+   tcoupl                         = V-rescale
+   nsttcouple                     = 100
+   nh-chain-length                = 0
+   print-nose-hoover-chain-variables = false
+   pcoupl                         = C-rescale
+   pcoupltype                     = Isotropic
+   nstpcouple                     = 100
+   tau-p                          = 5
+   compressibility (3x3):
+      compressibility[    0]={ 4.50000e-05,  0.00000e+00,  0.00000e+00}
+      compressibility[    1]={ 0.00000e+00,  4.50000e-05,  0.00000e+00}
+      compressibility[    2]={ 0.00000e+00,  0.00000e+00,  4.50000e-05}
+   ref-p (3x3):
+      ref-p[    0]={ 1.00000e+00,  0.00000e+00,  0.00000e+00}
+      ref-p[    1]={ 0.00000e+00,  1.00000e+00,  0.00000e+00}
+      ref-p[    2]={ 0.00000e+00,  0.00000e+00,  1.00000e+00}
+   refcoord-scaling               = No
+   posres-com (3):
+      posres-com[0]= 0.00000e+00
+      posres-com[1]= 0.00000e+00
+      posres-com[2]= 0.00000e+00
+   posres-comB (3):
+      posres-comB[0]= 0.00000e+00
+      posres-comB[1]= 0.00000e+00
+      posres-comB[2]= 0.00000e+00
+   QMMM                           = false
+qm-opts:
+   ngQM                           = 0
+   constraint-algorithm           = Lincs
+   continuation                   = true
+   Shake-SOR                      = false
+   shake-tol                      = 0.0001
+   lincs-order                    = 4
+   lincs-iter                     = 1
+   lincs-warnangle                = 30
+   nwall                          = 0
+   wall-type                      = 9-3
+   wall-r-linpot                  = -1
+   wall-atomtype[0]               = -1
+   wall-atomtype[1]               = -1
+   wall-density[0]                = 0
+   wall-density[1]                = 0
+   wall-ewald-zfac                = 3
+   pull                           = false
+   awh                            = false
+   rotation                       = false
+   interactiveMD                  = false
+   disre                          = No
+   disre-weighting                = Conservative
+   disre-mixed                    = false
+   dr-fc                          = 1000
+   dr-tau                         = 0
+   nstdisreout                    = 100
+   orire-fc                       = 0
+   orire-tau                      = 0
+   nstorireout                    = 100
+   free-energy                    = no
+   cos-acceleration               = 0
+   deform (3x3):
+      deform[    0]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    1]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+      deform[    2]={ 0.00000e+00,  0.00000e+00,  0.00000e+00}
+   simulated-tempering            = false
+   swapcoords                     = no
+   userint1                       = 0
+   userint2                       = 0
+   userint3                       = 0
+   userint4                       = 0
+   userreal1                      = 0
+   userreal2                      = 0
+   userreal3                      = 0
+   userreal4                      = 0
+   applied-forces:
+     electric-field:
+       x:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       y:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+       z:
+         E0                       = 0
+         omega                    = 0
+         t0                       = 0
+         sigma                    = 0
+     density-guided-simulation:
+       active                     = false
+       group                      = protein
+       similarity-measure         = inner-product
+       atom-spreading-weight      = unity
+       force-constant             = 1e+09
+       gaussian-transform-spreading-width = 0.2
+       gaussian-transform-spreading-range-in-multiples-of-width = 4
+       reference-density-filename = reference.mrc
+       nst                        = 1
+       normalize-densities        = true
+       adaptive-force-scaling     = false
+       adaptive-force-scaling-time-constant = 4
+       shift-vector               = 
+       transformation-matrix      = 
+     qmmm-cp2k:
+       active                     = false
+       qmgroup                    = System
+       qmmethod                   = PBE
+       qmfilenames                = 
+       qmcharge                   = 0
+       qmmultiplicity             = 1
+grpopts:
+   nrdf:       33024  3.11729e+06
+   ref-t:      303.15      303.15
+   tau-t:           1           1
+annealing:          No          No
+annealing-npoints:           0           0
+   acc:	           0           0           0
+   nfreeze:           N           N           N
+   energygrp-flags[  0]: 0
+
+[... 754637 lines trimmed by the mdforge fixture builder ...]
+
+Started mdrun on rank 0 Thu Jun  4 13:38:48 2026
+
+           Step           Time
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Thu Jun  4 15:52:11 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   1012735
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Fri Jun  5 01:44:06 2026
+
+           Step           Time
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Sat Jun  6 01:44:08 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   1034212
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Sat Jun  6 01:44:47 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Sun Jun  7 01:44:51 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   1055656
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Sun Jun  7 01:45:13 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Mon Jun  8 01:45:15 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   1076923
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Mon Jun  8 01:45:33 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Tue Jun  9 01:30:36 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   1108468
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Tue Jun  9 02:20:05 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Wed Jun 10 02:20:07 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   64358
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Fri Jun 12 14:58:52 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Sat Jun 13 14:43:54 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   99832
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Sat Jun 13 14:58:59 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Sun Jun 14 14:59:02 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   172409
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Sun Jun 14 14:59:31 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Mon Jun 15 14:59:34 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   125451
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+
+Started mdrun on rank 0 Mon Jun 15 15:34:16 2026
+
+
+
+Reading checkpoint file step5_production.cpt
+  file generated by:     /eb/software/GROMACS/2023.3-foss-2022a-CUDA-11.7.0/bin/gmx
+  file generated at:     Tue Jun 16 12:15:01 2026
+-----------------------------------------------------------
+Restarting from checkpoint, appending to previous log file.
+
+                      :-) GROMACS - gmx mdrun, 2023.3 (-:
+Process ID:   120327
+Command line:
+  gmx mdrun -v -deffnm step5_production -s step5_production_extended.tpr -cpi step5_production.cpt -append -nb gpu -pme gpu -ntmpi 3 -ntomp 8 -npme 1 -pin on
+
+[... 0 lines trimmed by the mdforge fixture builder ...]
+Overriding thread affinity set outside gmx mdrun
+
+Pinning threads with an auto-selected logical cpu stride of 1
+
+Initializing LINear Constraint Solver
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+B. Hess and H. Bekker and H. J. C. Berendsen and J. G. E. M. Fraaije
+LINCS: A Linear Constraint Solver for molecular simulations
+J. Comp. Chem. 18 (1997) pp. 1463-1472
+-------- -------- --- Thank You --- -------- --------
+
+The number of constraints is 6639
+
+++++ PLEASE READ AND CITE THE FOLLOWING REFERENCE ++++
+S. Miyamoto and P. A. Kollman
+SETTLE: An Analytical Version of the SHAKE and RATTLE Algorithms for Rigid
+Water Models
+J. Comp. Chem. 13 (1992) pp. 952-962
+-------- -------- --- Thank You --- -------- --------
+
+Intra-simulation communication will occur every 100 steps.
+There are: 1570380 Atoms
+Atom distribution over 2 domains: av 785190 stddev 167 min 785023 max 785357
+
+Updating coordinates and applying constraints on the GPU.
+
+NOTE: DLB will not turn on during the first phase of PME tuning
+Center of mass motion removal mode is Linear
+We have the following groups for center of mass motion removal:
+  0:  SOLU
+  1:  SOLV
+
+Started mdrun on rank 0 Tue Jun 16 13:40:21 2026
+
+           Step           Time
+       50000000   100000.00000
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.  Improper Dih.      CMAP Dih.
+    1.06768e+04    3.12402e+04    3.33964e+04    1.98083e+03   -1.35958e+03
+          LJ-14     Coulomb-14        LJ (SR)   Coulomb (SR)   Coul. recip.
+    9.29907e+03    1.56427e+05    2.35050e+06   -2.49165e+07    7.55619e+04
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -2.22488e+07    3.97133e+06   -1.82775e+07   -9.17678e+06    3.03234e+02
+ Pressure (bar)   Constr. rmsd
+   -1.58321e+00    0.00000e+00
+
+
+Time interval for measuring conserved energy has length 0, time 100000 to 100000 ps
+
+
+	<======  ###############  ==>
+	<====  A V E R A G E S  ====>
+	<==  ###############  ======>
+
+	Statistics over 50000001 steps using 500001 frames
+
+   Energies (kJ/mol)
+           Bond            U-B    Proper Dih.  Improper Dih.      CMAP Dih.
+    1.08823e+04    3.13514e+04    3.32828e+04    1.91028e+03   -1.33754e+03
+          LJ-14     Coulomb-14        LJ (SR)   Coulomb (SR)   Coul. recip.
+    9.30229e+03    1.55963e+05    2.35029e+06   -2.48984e+07    6.21229e+04
+      Potential    Kinetic En.   Total Energy  Conserved En.    Temperature
+   -2.22447e+07    3.97033e+06   -1.82743e+07   -1.37080e+07    3.03158e+02
+ Pressure (bar)   Constr. rmsd
+    1.13137e+00    0.00000e+00
+
+          Box-X          Box-Y          Box-Z
+    2.49896e+01    2.49896e+01    2.49896e+01
+
+   Total Virial (kJ/mol)
+    1.32288e+06   -3.27662e+01   -4.26959e+00
+   -3.27682e+01    1.32293e+06    1.37543e+01
+   -4.25335e+00    1.37572e+01    1.32294e+06
+
+   Pressure (bar)
+    1.12619e+00    1.77344e-03    2.22727e-02
+    1.77786e-03    1.14986e+00    2.91826e-02
+    2.22381e-02    2.91764e-02    1.11806e+00
+
+         T-SOLU         T-SOLV
+    3.03654e+02    3.03153e+02
+
+
+	M E G A - F L O P S   A C C O U N T I N G
+
+ NB=Group-cutoff nonbonded kernels    NxN=N-by-N cluster Verlet kernels
+ RF=Reaction-Field  VdW=Van der Waals  QSTab=quadratic-spline table
+ W3=SPC/TIP3p  W4=TIP4p (single or pairs)
+ V&F=Potential and force  V=Potential only  F=Force only
+
+ Computing:                               M-Number         M-Flops  % Flops
+-----------------------------------------------------------------------------
+ Pair Search distance check             204.222048        1837.998     1.1
+ NxN QSTab Elec. + LJ [V&F]            2040.680512      165295.121    98.8
+ 1,4 nonbonded interactions               0.034992           3.149     0.0
+ CG-CoM                                   1.570380           4.711     0.0
+ Bonds                                    0.006690           0.395     0.0
+ Propers                                  0.034006           7.787     0.0
+ Impropers                                0.002234           0.465     0.0
+ Virial                                   1.570470          28.268     0.0
+ Stop-CM                                  1.570380          15.704     0.0
+ P-Coupling                               1.570380           9.422     0.0
+ Calc-Ekin                                1.570380          42.400     0.0
+ CMAP                                     0.000846           1.438     0.0
+ Urey-Bradley                             0.024217           4.432     0.0
+-----------------------------------------------------------------------------
+ Total                                                  167251.292   100.0
+-----------------------------------------------------------------------------
+
+
+    D O M A I N   D E C O M P O S I T I O N   S T A T I S T I C S
+
+ av. #atoms communicated per step for force:  2 x 186675.0
+
+
+      R E A L   C Y C L E   A N D   T I M E   A C C O U N T I N G
+
+On 2 MPI ranks doing PP, each using 8 OpenMP threads, and
+on 1 MPI rank doing PME, using 8 OpenMP threads
+
+ Activity:              Num   Num      Call    Wall time         Giga-Cycles
+                        Ranks Threads  Count      (s)         total sum    %
+--------------------------------------------------------------------------------
+ Send X to PME             2    8          1       0.084          3.326   1.5
+ Neighbor search           2    8          1       0.192          7.611   3.4
+ Launch PP GPU ops.        2    8          2       0.018          0.702   0.3
+ Force                     2    8          1       0.002          0.082   0.0
+ Wait + Comm. F            2    8          1       0.002          0.095   0.0
+ PME GPU mesh *            1    8          1       0.006          0.122   0.1
+ PME wait for PP *                                 3.678         72.953  33.0
+ Wait + Recv. PME F        2    8          1       0.003          0.121   0.1
+ Wait GPU NB nonloc.       2    8          1       0.000          0.000   0.0
+ Wait GPU NB local         2    8          1       0.000          0.000   0.0
+ Wait GPU state copy       2    8          3       0.002          0.088   0.0
+ NB X/F buffer ops.        2    8          2       0.001          0.030   0.0
+ Write traj.               2    8          1       1.720         68.254  30.8
+ Comm. energies            2    8          1       1.703         67.555  30.5
+--------------------------------------------------------------------------------
+ Total                                             3.719        221.323 100.0
+--------------------------------------------------------------------------------
+(*) Note that with separate PME ranks, the walltime column actually sums to
+    twice the total reported, but the cycle count total and % are correct.
+--------------------------------------------------------------------------------
+ Breakdown of PME mesh activities
+--------------------------------------------------------------------------------
+ Wait PME GPU gather       1    8          1       0.006          0.117   0.1
+ Launch PME GPU ops.       1    8          9       0.000          0.004   0.0
+--------------------------------------------------------------------------------
+
+NOTE: 31 % of the run time was spent communicating energies,
+      you might want to increase some nst* mdp options
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       88.610        3.719     2382.5
+                 (ns/day)    (hour/ns)
+Performance:        0.046      516.560
+Finished mdrun on rank 0 Tue Jun 16 13:40:25 2026
+

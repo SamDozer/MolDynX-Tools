@@ -35,6 +35,9 @@ step5_production.*
 step4_*.*
 toppar/
 
+# ...except the small, curated test fixtures (real trimmed logs, one small .edr)
+!tests/fixtures/**
+
 # --- OS cruft -------------------------------------------------------------
 .DS_Store
 Thumbs.db
