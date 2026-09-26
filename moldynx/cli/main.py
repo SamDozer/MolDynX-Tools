@@ -70,6 +70,12 @@ def build_parser() -> argparse.ArgumentParser:
     it.add_argument("--allow-ambiguous", dest="allow_ambiguous", action="store_true")
     it.add_argument("--include-dir", dest="include_dir", action="append")
 
+    be = sub.add_parser("binding-energy",
+                        help="MM-GBSA/PBSA with gmx_MMPBSA: prepare, optionally run, analyse.")
+    _add_common(be)
+    be.add_argument("--execute", action="store_true",
+                    help="Run the prepared gmx_MMPBSA script now (hours; Linux or WSL).")
+
     d = sub.add_parser("detect", help="Detect and print the system composition.")
     _add_common(d)
 
@@ -109,6 +115,43 @@ def _yaml_keys(path) -> set:
     import yaml
     from pathlib import Path
     return set((yaml.safe_load(Path(path).read_text()) or {}).keys())
+
+
+def _cmd_binding_energy(args) -> int:
+    """Prepare (or analyse) the gmx_MMPBSA calculation; --execute runs it in between."""
+    import json
+    import subprocess
+    from moldynx.analysis.mmpbsa import MMPBSA
+    from moldynx.core.config import RunConfig
+    from moldynx.core.context import AnalysisContext
+    from moldynx.core.pipeline import build_plan
+    from moldynx.io.gromacs import windows_to_wsl
+    cfg = RunConfig.from_args(args, yaml_path=args.config)
+    if cfg.input_dir is None:
+        print("error: --input (or 'input_dir' in --config) is required.")
+        return 2
+    if not args.output and "output_dir" not in _yaml_keys(args.config):
+        cfg.output_dir = default_output_dir(cfg.input_dir)
+    fs, val, system, _sel, _skip = build_plan(cfg)
+    if not val.ok:
+        print(val.report())
+        return 2
+    ctx = AnalysisContext(cfg, system, fs)
+    out = MMPBSA().run(ctx)
+    print(json.dumps({k: v for k, v in out.items() if k not in ("headline",)}, indent=1,
+                     default=str)[:3000])
+    if args.execute and out.get("status") == "prepared":
+        d = out["directory"]
+        cmd = (["wsl.exe", "--", "bash", "-c", f"cd '{windows_to_wsl(d)}' && bash run_mmpbsa.sh"]
+               if sys.platform.startswith("win") else ["bash", "run_mmpbsa.sh"])
+        print(f"[binding-energy] running gmx_MMPBSA in {d} (this takes hours) ...")
+        rc = subprocess.call(cmd, cwd=None if sys.platform.startswith("win") else d)
+        if rc != 0:
+            print(f"[binding-energy] run script exited with {rc}; see {d}/run.log")
+            return rc
+        out = MMPBSA().run(ctx)
+        print(json.dumps(out.get("headline"), indent=1, default=float))
+    return 0
 
 
 def _cmd_intake(args) -> int:
@@ -191,6 +234,7 @@ def main(argv=None) -> int:
         print(f"MolDynX Tools (moldynx) {__version__}")
         return 0
     return {"analyze": _cmd_analyze, "detect": _cmd_detect, "intake": _cmd_intake,
+            "binding-energy": _cmd_binding_energy,
             "list-analyses": _cmd_list}[args.command](args)
 
 
