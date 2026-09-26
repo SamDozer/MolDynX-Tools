@@ -6,10 +6,8 @@ complexes) are test cases only; nothing in the code names a system.
 
 ## Left for the maintainer (cannot be automated)
 
-1. **Rename the GitHub repository** (Settings → General → Repository name), e.g. to
-   `moldynx-tools`; GitHub redirects the old URL. Then replace `molecular-dynamics-forge` with
-   the new name in `README.md` (badges, clone commands), `docs/QUICKSTART.md`, `CITATION.cff`
-   and `pyproject.toml` (7 URLs).
+1. ~~Rename the GitHub repository~~ — done: `SamDozer/MolDynX-Tools` (the old URL redirects);
+   every link in the repository points to the new name.
 2. **Release 0.3.0** on GitHub when satisfied; Zenodo mints a new version DOI under the existing
    concept DOI 10.5281/zenodo.21265946.
 3. Decide whether the real test fixtures (trimmed logs and gmx_MMPBSA outputs from the reference

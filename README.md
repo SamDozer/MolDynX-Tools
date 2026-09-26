@@ -1,6 +1,6 @@
 # MolDynX Tools — audited, reproducible GROMACS MD analysis
 
-[![CI](https://github.com/SamDozer/molecular-dynamics-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/molecular-dynamics-forge/actions)
+[![CI](https://github.com/SamDozer/MolDynX-Tools/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/MolDynX-Tools/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21265946.svg)](https://doi.org/10.5281/zenodo.21265946)
@@ -19,8 +19,8 @@ to a file.
 ## Quick start
 
 ```bash
-git clone https://github.com/SamDozer/molecular-dynamics-forge
-cd molecular-dynamics-forge
+git clone https://github.com/SamDozer/MolDynX-Tools
+cd MolDynX-Tools
 python -m pip install -e ".[all]"            # or ".[dev]" for tests
 
 moldynx intake  --input /path/to/sim_dir     # which files form the run, what is missing, why

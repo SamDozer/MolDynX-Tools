@@ -43,8 +43,8 @@ all = ["panedr>=0.8", "biopython>=1.80", "prolif>=2.0", "rdkit>=2023.3", "weasyp
        "rich>=13.0"]
 
 [project.urls]
-Homepage = "https://github.com/SamDozer/molecular-dynamics-forge"
-Repository = "https://github.com/SamDozer/molecular-dynamics-forge"
+Homepage = "https://github.com/SamDozer/MolDynX-Tools"
+Repository = "https://github.com/SamDozer/MolDynX-Tools"
 
 [project.scripts]
 moldynx = "moldynx.cli.main:main"

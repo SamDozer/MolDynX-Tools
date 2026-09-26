@@ -3,8 +3,8 @@
 ## Install
 
 ```bash
-git clone https://github.com/SamDozer/molecular-dynamics-forge
-cd molecular-dynamics-forge
+git clone https://github.com/SamDozer/MolDynX-Tools
+cd MolDynX-Tools
 python -m pip install -e ".[all]"     # core + energy + fingerprints + pdf + ui
 ```
 or with conda:
