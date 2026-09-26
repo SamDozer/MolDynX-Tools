@@ -35,3 +35,18 @@ params:
     ref_frame: 0
   rog:
     window: 20
+
+# Periodic-boundary treatment: auto (nojump for complexes) | none | whole | nojump
+pbc: auto
+
+# What only you can supply -- never guessed (all optional)
+annotations:
+  chains:
+    - {segid: seg_0_PROA, display: "alpha-zein A8HNE1", role: ligand}
+    - {segid: seg_1_PROB, display: "ZmBiP2", role: receptor}   # numbering_offset defaults to 1-based
+  motifs: []            # e.g. {name: "Motif 1", sequence: "...", chain: seg_0_PROA}
+  docking_site: {}      # e.g. {seg_1_PROB: [405, 434, 435]}  (biological numbering)
+  unresolved_metadata: {force_field_variant: null, salt_concentration_M: null}
+
+binding_energy:
+  primary_window: [80, 100]   # ns; omit to show the full run and its final 20 %

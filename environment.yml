@@ -1,10 +1,10 @@
-# Conda environment for the alpha-zein (A8HNE1) MD analysis pipeline.
+# Conda environment for MolDynX Tools.
 #   conda env create -f environment.yml
-#   conda activate zein-md
+#   conda activate moldynx
 #
 # conda-forge provides pre-built wheels for rdkit / mdtraj / MDAnalysis, which is
 # the most reliable way to install the interaction-fingerprint stack.
-name: zein-md
+name: moldynx
 channels:
   - conda-forge
 dependencies:
