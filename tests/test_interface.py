@@ -36,9 +36,13 @@ def ctx(tmp_path):
             src.atoms[187:].translate([0.5 * k, 0, 0]) if k else None
             src.trajectory.ts.time = k * 100.0
             w.write(src.atoms)
+    from moldynx.core.system import _ONE_LETTER
+    seq = "".join(_ONE_LETTER.get(r, "X") for r in src.residues.resnames)
     (cfg.data_dir / "core_meta.json").write_text(json.dumps({"chains": [
-        {"segid": "seg_0_PROA", "index": 0, "core_start": 0, "core_stop": 187},
-        {"segid": "seg_1_PROB", "index": 1, "core_start": 187, "core_stop": 850}]}))
+        {"segid": "seg_0_PROA", "index": 0, "core_start": 0, "core_stop": 187,
+         "resid_first": 1, "resid_last": 187, "sequence": seq[:187]},
+        {"segid": "seg_1_PROB", "index": 1, "core_start": 187, "core_stop": 850,
+         "resid_first": 188, "resid_last": 850, "sequence": seq[187:]}]}))
     c = AnalysisContext.__new__(AnalysisContext)
     c.config, c.system, c._core = cfg, _System(), mda.Universe(str(core_pdb), str(core_xtc))
     return c

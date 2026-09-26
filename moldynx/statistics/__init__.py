@@ -6,3 +6,6 @@ from moldynx.statistics.timeseries import (  # noqa: F401
     plateau_detection,
 )
 from moldynx.statistics.correlation import correlation_matrices  # noqa: F401
+from moldynx.statistics.autocorr import (  # noqa: F401
+    statistical_inefficiency, describe_correlated, detect_equilibration, drift,
+)
