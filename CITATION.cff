@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-title: "MolDynX Tools (formerly mdforge): a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations"
+title: "MolDynX Tools: a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations"
 abstract: >-
   MolDynX Tools analyses GROMACS MD simulations of arbitrary biomolecular systems from
   a single simulation directory: it detects the system, auto-selects analyses,
@@ -14,8 +14,8 @@ authors:
 repository-code: "https://github.com/SamDozer/MolDynX-Tools"
 url: "https://github.com/SamDozer/MolDynX-Tools"
 license: MIT
-version: 0.2.1
-date-released: "2026-07-08"
+version: 0.3.0
+date-released: "2026-09-26"
 doi: 10.5281/zenodo.21265946
 keywords:
   - molecular dynamics
@@ -24,3 +24,6 @@ keywords:
   - trajectory analysis
   - bioinformatics
   - reproducibility
+  - MM-GBSA
+  - MM-PBSA
+  - protein-protein interactions

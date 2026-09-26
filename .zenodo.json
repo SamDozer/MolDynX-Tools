@@ -1,20 +1,27 @@
 {
-  "title": "MolDynX Tools (formerly mdforge): a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations",
-  "description": "MolDynX Tools (formerly mdforge) turns a GROMACS simulation directory into a complete, publication-quality, fully reproducible analysis. It discovers files, detects the biomolecular system (protein / ligand / DNA / RNA / membrane / ions / multi-chain), auto-selects the appropriate analyses, runs them with streaming-friendly performance, and produces 300-dpi figures, a reproducibility manifest, and Markdown/HTML/PDF reports. Extensible via a plugin architecture and drivable from a single YAML config.",
-  "upload_type": "software",
-  "license": "MIT",
-  "access_right": "open",
-  "creators": [
-    { "name": "Mahmoud, Hossam", "orcid": "0009-0004-7804-4174" }
-  ],
-  "keywords": [
-    "molecular dynamics",
-    "GROMACS",
-    "MDAnalysis",
-    "mdtraj",
-    "trajectory analysis",
-    "bioinformatics",
-    "computational biology",
-    "reproducibility"
-  ]
+    "title":  "MolDynX Tools: a reusable, reproducible analysis framework for GROMACS molecular dynamics simulations",
+    "description":  "MolDynX Tools (formerly mdforge) turns a GROMACS simulation directory into an audited, reproducible analysis. It selects the production run from evidence (atom counts, time span, log completion) rather than file size, diagnoses and proves its periodic-boundary treatment, audits minimisation and equilibration, runs structural, dynamic and interface analyses, computes MM-GBSA/MM-PBSA binding free energies with gmx_MMPBSA, and writes data-driven Markdown/HTML documents and self-verifying datasets. Extensible via a plugin architecture and drivable from a single YAML config.",
+    "upload_type":  "software",
+    "license":  "MIT",
+    "access_right":  "open",
+    "creators":  [
+                     {
+                         "name":  "Mahmoud, Hossam",
+                         "orcid":  "0009-0004-7804-4174"
+                     }
+                 ],
+    "keywords":  [
+                     "molecular dynamics",
+                     "GROMACS",
+                     "MDAnalysis",
+                     "mdtraj",
+                     "trajectory analysis",
+                     "bioinformatics",
+                     "computational biology",
+                     "reproducibility",
+                     "MM-GBSA",
+                     "MM-PBSA",
+                     "protein-protein interactions"
+                 ],
+    "version":  "0.3.0"
 }
