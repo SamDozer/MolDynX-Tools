@@ -84,4 +84,37 @@
   `moldynx.core.surface.shrake_rupley` computes frame by frame; `sasa` and `interface` buried
   area now stride by 10 frames by default (parameters `stride` / `bsa_stride`).
 
-Remaining 0.3 work: `docs/NEXT_STEPS.md`.
+### Complex analyses, annotations, stationarity
+
+- `contact_lifetime`, `water_bridges`, `porcupine` (ported from a validated legacy pipeline,
+  generalised; porcupine uses an SVD and its own aligned copy of the trajectory).
+- `annotation`: biological numbering, domains transferred by global alignment (BLOSUM62,
+  gap −10/−0.5) with uncertain edges flagged, motif location with partial matches, docking-site
+  involvement — only from the `annotations:` block of the configuration.
+- `analysis_window`: Chodera equilibration detection, drift and half-vs-half tests; the
+  averaging window is a user decision (`binding_energy.primary_window`) when nothing is
+  stationary.
+- `moldynx.statistics`: statistical inefficiency, corrected SEM, equilibration detection, drift.
+
+### MM-GBSA / MM-PBSA with gmx_MMPBSA
+
+- **Replaced** the placeholder `mmpbsa` (fixed groups `r 1-100`/`r 101-9999`, an Amber
+  force-field line in a CHARMM/GROMACS workflow, the full solvated system, never run; the
+  contact-count proxy is dropped — interface occupancy covers it) with a complete workflow built
+  on [gmx_MMPBSA](https://github.com/Valdes-Tresanca-MS/gmx_MMPBSA): protein-only system,
+  groups from chain identity, derived ionic strength, explicit decomposition residues, probe gate,
+  GB + PB, analysis with autocorrelation-corrected errors, drift, GB vs PB, hotspots, closure and
+  an entropy validity gate. New `moldynx binding-energy [--execute]`. Reproduces a manual
+  analysis of real outputs exactly.
+
+### Documents and datasets
+
+- `PBC_VALIDATION`, `EQUILIBRATION`, `BINDING_ENERGY` documents written from the results files;
+  Markdown rendered to self-contained HTML (the old renderer only deleted `**`); report wording
+  no longer claims stability from an RMSD plateau.
+- `moldynx dataset` / `verify` / `package`: numbered dataset, raw-file manifest,
+  `verify_dataset.py` shipped inside, zip extracted and re-verified.
+- New dependency: `markdown`; optional `biopython` (`[annotation]`).
+
+See `docs/WHATS_NEW_0.3.md` for the comparison with mdforge 0.2 and `docs/NEXT_STEPS.md` for
+what is left.

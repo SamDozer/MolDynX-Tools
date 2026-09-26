@@ -1,104 +1,130 @@
-# MolDynX Tools — reusable, reproducible, audited GROMACS MD analysis
+# MolDynX Tools — audited, reproducible GROMACS MD analysis
 
-[![CI](https://github.com/SamDozer/molecular-dynamics-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/molecular-dynamics-forge/actions)
+[![CI](https://github.com/SamDozer/MolDynX-Tools/actions/workflows/ci.yml/badge.svg)](https://github.com/SamDozer/MolDynX-Tools/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](pyproject.toml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21265946.svg)](https://doi.org/10.5281/zenodo.21265946)
 
-**MolDynX Tools** (`moldynx`; formerly *mdforge*) turns a GROMACS simulation directory into a complete, publication-quality,
-fully reproducible analysis — with minimal input. Point it at a folder; it discovers
-the files, **detects the system** (protein / ligand / DNA / RNA / membrane / ions /
-multi-chain / …), **auto-selects the right analyses**, runs them with streaming-friendly
-performance, and produces figures, tables, a provenance manifest, and a report.
+**MolDynX Tools** (`moldynx`; formerly *mdforge*) turns a GROMACS simulation folder into a
+complete, **audited** analysis: it finds the right files by evidence, proves that trajectory
+processing changed nothing it should not, audits how the system was prepared and equilibrated,
+analyses the structure, dynamics and interfaces, computes MM-GBSA/MM-PBSA binding energies with
+gmx_MMPBSA, and writes documents and a self-verifying dataset in which every number traces back
+to a file.
 
-> This repository began as a project-specific pipeline for an α-zein simulation
-> (now preserved in [`legacy/`](legacy) and [`examples/`](examples)) and was
-> refactored into this general toolkit.
+> What is new compared with mdforge 0.2: [docs/WHATS_NEW_0.3.md](docs/WHATS_NEW_0.3.md).
 
 ---
 
-## Highlights
-
-- **Zero-config detection** — recursively finds `*.xtc/.trr/.tpr/.gro/.edr/.ndx/.top`,
-  validates them (clear messages for anything missing), and classifies the system.
-- **Automatic module selection** — each analysis declares the system types and files
-  it supports; the pipeline runs exactly what applies (`--plan` shows *why*).
-- **Extensible via plugins** — drop a `BaseAnalysis` subclass into
-  `moldynx/analysis/plugins/` (or a `--plugin-dir`) and it is auto-discovered.
-- **Config-driven** — describe a whole run in `config.yaml` and re-run with one command
-  (ideal for HPC/batch).
-- **Reproducible by construction** — every run writes `manifest.json/yaml` with library
-  versions, git commit, input-file fingerprints, seeds, parameters and runtimes.
-- **Publication-quality output** — 300-dpi PNG **and** vector PDF, consistent
-  Nature-like style, plus Markdown + self-contained HTML (+ optional PDF) reports.
-- **Scales** — streams frame-by-frame and caches a solute-only trajectory, so large
-  (100 GB+) explicit-solvent runs stay tractable.
-
-## Supported systems
-
-protein-only · protein–protein · protein–peptide · protein–ligand · protein–DNA ·
-protein–RNA · protein–membrane · multi-chain · ions · cofactors · mixed biomolecular
-systems (detected automatically; override with `--system-type`).
-
-## Install
+## Quick start
 
 ```bash
-git clone https://github.com/SamDozer/molecular-dynamics-forge
-cd molecular-dynamics-forge
-python -m pip install -e ".[all]"      # or ".[dev]" for tests
+git clone https://github.com/SamDozer/MolDynX-Tools
+cd MolDynX-Tools
+python -m pip install -e ".[all]"            # or ".[dev]" for tests
+
+moldynx intake  --input /path/to/sim_dir     # which files form the run, what is missing, why
+moldynx analyze --input /path/to/sim_dir     # everything applicable -> ./moldynx_results/<folder>
+moldynx binding-energy --input /path/to/sim_dir [--execute]   # MM-GBSA/PBSA (gmx_MMPBSA)
+moldynx dataset --run moldynx_results/<folder> --out my_dataset
+moldynx package my_dataset                   # zip, extract, verify
 ```
 
-## Usage
+MolDynX never writes into the simulation folder.
+
+## What a run does
+
+| Stage | What happens | Output |
+|---|---|---|
+| **Intake** | files classified by simulation stage (setup / minimisation / NVT / NPT / production); the production run chosen by evidence (atom counts, time span, log completion) — never by size or name; earlier analysis folders, backups and crash dumps ignored; extensions, clock offsets and inputs referenced by job scripts but absent are reported | `intake/INTAKE_REPORT.md`, capability matrix |
+| **PBC: diagnose → treat → prove** | each raw frame is measured (split molecules, continuity, PBC-aware partner distance), treated (`--pbc auto\|none\|whole\|nojump`), then checked against the raw frame | `PBC_VALIDATION.md`, `pbc_summary.json` |
+| **Preparation audit** | minimisation outcome (and where the largest force sits), NVT/NPT statistics and residual drift, position restraints, protonation states, chain of custody, timeline | `EQUILIBRATION.md` |
+| **Analyses** | RMSD, RMSF, Rg, SASA, PCA, DCCM, clustering, secondary structure, H-bonds, salt bridges, RIN, ProLIF, … plus for complexes: interface suite, contact lifetimes, water bridges, porcupine | figures, CSVs |
+| **Annotations** | display names, biological numbering, domains transferred by alignment, motifs, docking site — only from your config | `annotation.json`, `region_summary.csv` |
+| **Stationarity** | Chodera equilibration detection and drift tests; no silent choice of averaging window | `window_selection.json` |
+| **Binding energy** | gmx_MMPBSA package (protein-only system, derived ionic strength, explicit decomposition residues, probe gate) → analysis with autocorrelation-corrected errors | `BINDING_ENERGY.md` |
+| **Documents & dataset** | report + companion documents (Markdown and self-contained HTML), numbered dataset with `verify_dataset.py` | `report/`, dataset folder, zip |
+
+## The input-file contract
+
+| If this is present… | …this becomes possible | Without it |
+|---|---|---|
+| production run input (`.tpr`) + trajectory with equal atom counts | every analysis | **stop** |
+| production `.edr` | energy analysis | skipped, with reason |
+| production `.log` | Methods, sessions, extension audit, completion proof | completion reported as not proven |
+| `topol.top` + `toppar/` | MM-GBSA/PBSA | skipped; package still prepared |
+| minimisation / NVT / NPT `.log` + `.edr` | preparation audit | listed as missing |
+| stage `.tpr` files | restraint audit | "not recoverable" |
+| stage `.mdp` files | MDP-only settings (`gen-vel`, `define`) | "not recorded" |
+| job scripts | explicit chain of custody | inferred, labelled inferred |
+
+## Configuration
+
+Everything can be driven from one YAML file (`moldynx analyze --config config.yaml`); see
+[`examples/alpha_zein_A8HNE1/config.yaml`](examples/alpha_zein_A8HNE1/config.yaml). Facts that
+cannot be read from files are supplied — never guessed:
+
+```yaml
+annotations:
+  chains:
+    - {segid: seg_0_PROA, display: "Partner A", role: ligand}
+    - {segid: seg_1_PROB, display: "Partner B", role: receptor, numbering_offset: 187}
+  domains:
+    seg_1_PROB: {reference_name: "UniProt P11021", reference_sequence: "MKLS...",
+                 regions: {NBD: [26, 405]}}
+  motifs:
+    - {name: "Motif 1", sequence: "CSQAPIASLLPPYLSPAVSSVC", chain: seg_0_PROA}
+  docking_site: {seg_1_PROB: [405, 434, 435]}
+  unresolved_metadata: {force_field_variant: null, salt_concentration_M: null}
+binding_energy:
+  primary_window: [80, 100]      # ns; omit and MolDynX shows the full run + final 20 %
+```
+
+## Binding energy (gmx_MMPBSA)
+
+MM-GBSA/MM-PBSA calculations are performed with
+[**gmx_MMPBSA**](https://github.com/Valdes-Tresanca-MS/gmx_MMPBSA) (Valdés-Tresanca et al.,
+*J. Chem. Theory Comput.* 2021, 17, 6281) on top of AmberTools MMPBSA.py (Miller et al., 2012);
+please cite both. MolDynX prepares the calculation (protein-only system; ionic strength derived
+from the ions in the run input; decomposition of every residue that contacted the partner in any
+frame), gates it (a short probe run must show zero bonded Δ terms), runs it on Linux/WSL, and
+analyses it (windows, drift, GB vs PB, hotspots, decomposition closure, entropy validity).
+Results are end-point estimates, not experimental affinities.
+
+## Reproducibility and verification
+
+Every run writes `manifest.json/yaml` (versions, git commit, parameters, input fingerprints and
+the evidence for every chosen file). Every dataset ships `5_validation/verify_dataset.py`
+(layout, links, raw-file manifest, PBC proof, Rg smoke test):
 
 ```bash
-moldynx detect  --input /path/to/sim_dir            # what's in my system?
-moldynx analyze --input /path/to/sim_dir --plan     # what would run, and why?
-moldynx analyze --input /path/to/sim_dir -o results # run everything applicable
-moldynx analyze --config examples/alpha_zein_A8HNE1/config.yaml   # reproducible
-moldynx list-analyses                                # registered analyses (incl. plugins)
+moldynx verify my_dataset [--full]
 ```
-
-See [`docs/QUICKSTART.md`](docs/QUICKSTART.md) for all options and the plugin template.
 
 ## Architecture
 
 ```
 moldynx/
-  core/       system.py (detection) · base.py (BaseAnalysis) · registry.py (+plugins)
-              context.py · config.py (YAML+CLI) · provenance.py · pipeline.py
-  io/         discovery.py · validation.py
-  statistics/ descriptive · timeseries · correlation · bootstrap
-  plotting/   style · figures (PNG+PDF, 300 dpi)
-  analysis/   rmsd · rmsf · rog · sasa · … + plugins/ (auto-discovered)
-  report/     generator (Markdown + HTML + PDF)
-  cli/        main (analyze/detect/list) · interactive
-tests/  ·  examples/  ·  docs/  ·  legacy/  ·  Dockerfile  ·  .github/workflows/
+  core/      system (detection, chain records) · pbc · surface · annotations · context · pipeline
+             registry (+plugins) · config (YAML+CLI) · provenance
+  io/        discovery (stage classification, evidence) · validation (capability matrix)
+             gromacs (log/mdp/xtc/tpr readers, gmx runner with WSL fallback) · jobscripts · intake
+  analysis/  32 analyses (incl. the bundled plugin) + plugins/ (auto-discovered)
+  binding/   gmx_MMPBSA prepare + analyse
+  report/    generator + documents (Markdown → self-contained HTML)
+  dataset.py · verify_template.py
+mdforge/     deprecated import shim (removed in 0.4)
 ```
 
-Every analysis subclasses `BaseAnalysis`, declaring `required_files`,
-`supported_systems`, `outputs` and `default_params`; subclasses auto-register, so
-**detection → selection → run → report** is entirely data-driven.
+Every analysis subclasses `BaseAnalysis` and declares `required_files`, `supported_systems`,
+`outputs` and `default_params`; `moldynx analyze --plan` shows what runs and why.
 
-## Analyses (24 built-in)
+## Tested
 
-| System scope | Analyses |
-|---|---|
-| **Any system** | RMSD, radius of gyration, SASA, COM, H-bonds, energies (`.edr`), ProLIF, MM/PBSA workflow, statistics |
-| **Protein** | RMSF, structural descriptors (Dmax/κ²/volume), native contacts (Q), contact map, DSSP secondary structure, RIN, PCA + free-energy landscape, DCCM, clustering, salt bridges, convergence (RMSIP/block-avg), end-to-end *(plugin)* |
-| **Complex** (protein–protein/–nucleic) | interface (BSA, contacts, iRMSD) |
-| **Protein–ligand** | ligand RMSD, ligand contacts, binding pocket |
-| **Protein–DNA/RNA** | protein–nucleic contacts, nucleic RMSD |
-
-Each is a drop-in `BaseAnalysis`; the pipeline runs only those applicable to the
-detected system (`moldynx list-analyses` shows all; `--plan` shows what runs and why).
-The complex/ligand/nucleic modules are implemented and gate correctly but await
-validation on a matching test trajectory.
-
-## Reproducibility
-
-```bash
-cat results/manifest.json     # versions, git commit, seeds, params, input hashes, runtimes
-```
+66 tests run in CI on real, trimmed data from two 100 ns protein–protein simulations (GROMACS
+logs, an energy file, gmx_MMPBSA outputs, raw-folder listings) — see
+[`tests/fixtures/README.md`](tests/fixtures/README.md). Intake, PBC, preparation audit and
+MM-GBSA/PBSA analysis reproduce an independent manual analysis of those datasets exactly.
 
 ## Container
 
@@ -109,23 +135,15 @@ docker run --rm -v /data/sim:/sim moldynx analyze --input /sim --output /sim/res
 
 ## Roadmap
 
-See **[ROADMAP.md](ROADMAP.md)** for the plan — the flagship being a
-**comparison mode** (`moldynx compare`) that overlays control vs. protein–ligand /
-protein–protein systems on shared axes (ΔRMSF maps, common-subspace PCA, ensemble
-similarity), plus parallel execution, a functional API, membrane and multi-engine
-support — drawing design influence from
-[MDAnalysis](https://github.com/MDAnalysis/mdanalysis) and
-[mdtraj](https://github.com/mdtraj/mdtraj).
+See [ROADMAP.md](ROADMAP.md) — next: comparison mode (`moldynx compare`), parallel execution,
+a process-pool SASA backend, membrane and multi-engine support.
 
 ## Citation
 
-If you use MolDynX Tools, please cite it (concept DOI — always resolves to the latest version):
+> Mahmoud, H. *MolDynX Tools: a reusable, reproducible analysis framework for GROMACS molecular
+> dynamics simulations.* Zenodo. https://doi.org/10.5281/zenodo.21265946
 
-> Mahmoud, H. *MolDynX Tools: a reusable, reproducible analysis framework for GROMACS
-> molecular dynamics simulations.* Zenodo. https://doi.org/10.5281/zenodo.21265946
-
-A machine-readable [`CITATION.cff`](CITATION.cff) is included (GitHub shows a
-"Cite this repository" button).
+A machine-readable [`CITATION.cff`](CITATION.cff) is included.
 
 ## License
 
