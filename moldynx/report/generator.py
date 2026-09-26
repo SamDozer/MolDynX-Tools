@@ -8,7 +8,6 @@ two formats never drift.  PDF is attempted via weasyprint if installed.
 
 from __future__ import annotations
 
-import base64
 from datetime import date
 from pathlib import Path
 
@@ -37,43 +36,6 @@ def _md(blocks) -> str:
             rel = f"../figures/{Path(path).name}"
             out.append(f"\n![{caption}]({rel})\n\n*Figure. {caption}.*\n")
     return "\n".join(out)
-
-
-def _html(blocks) -> str:
-    css = ("body{font-family:Arial,Helvetica,sans-serif;max-width:960px;margin:2rem auto;"
-           "padding:0 1rem;color:#222;line-height:1.5}h1{border-bottom:3px solid #1f6f8b}"
-           "h2{color:#1f6f8b;margin-top:2rem}table{border-collapse:collapse;margin:1rem 0}"
-           "th,td{border:1px solid #ccc;padding:6px 10px;text-align:left}"
-           "th{background:#f0f4f6}img{max-width:100%;border:1px solid #eee}"
-           "figure{margin:1.5rem 0}figcaption{color:#666;font-size:.9em}")
-    out = [f"<!doctype html><html><head><meta charset='utf-8'>"
-           f"<style>{css}</style></head><body>"]
-    for kind, payload in blocks:
-        if kind == "h1":
-            out.append(f"<h1>{payload}</h1>")
-        elif kind == "h2":
-            out.append(f"<h2>{payload}</h2>")
-        elif kind == "p":
-            out.append(f"<p>{_inline_html(payload)}</p>")
-        elif kind == "table":
-            headers, rows = payload
-            out.append("<table><tr>" + "".join(f"<th>{h}</th>" for h in headers) + "</tr>")
-            for r in rows:
-                out.append("<tr>" + "".join(f"<td>{c}</td>" for c in r) + "</tr>")
-            out.append("</table>")
-        elif kind == "img":
-            path, caption = payload
-            p = Path(path)
-            if p.exists():
-                b64 = base64.b64encode(p.read_bytes()).decode()
-                out.append(f"<figure><img src='data:image/png;base64,{b64}'/>"
-                           f"<figcaption>{caption}</figcaption></figure>")
-    out.append("</body></html>")
-    return "\n".join(out)
-
-
-def _inline_html(text: str) -> str:
-    return text.replace("**", "")  # markdown bold markers -> plain (kept simple)
 
 
 # --------------------------------------------------------------------------- #
@@ -138,22 +100,33 @@ def generate_report(ctx, results: dict, manifest, formats=("md", "html")) -> lis
                         "and per-analysis runtimes are recorded in `manifest.json` / "
                         "`manifest.yaml` for exact reproduction."))
 
+    # -- companion documents (written from the results files) ------------- #
+    from moldynx.report import documents
+    docs = documents.write_all(ctx, formats=[f for f in formats if f in ("md", "html")])
+    doc_names = sorted({p.stem for p in docs})
+    if doc_names:
+        blocks.insert(2, ("h2", "Companion documents"))
+        blocks.insert(3, ("p", " · ".join(f"[{n}]({n}.md)" for n in doc_names)))
+
     # -- render ----------------------------------------------------------- #
     ctx.config.report_dir.mkdir(parents=True, exist_ok=True)
-    written = []
+    written = list(docs)
+    md_text = _md(blocks)
     if "md" in formats:
         p = ctx.config.report_dir / "report.md"
-        p.write_text(_md(blocks), encoding="utf-8")
+        p.write_text(md_text, encoding="utf-8")
         written.append(p)
+    html_text = documents.to_html(md_text.replace(".md)", ".html)"), ctx.config.report_dir,
+                                  "MD analysis report")
     if "html" in formats:
         p = ctx.config.report_dir / "report.html"
-        p.write_text(_html(blocks), encoding="utf-8")
+        p.write_text(html_text, encoding="utf-8")
         written.append(p)
     if "pdf" in formats:
         try:
             from weasyprint import HTML
             pdf = ctx.config.report_dir / "report.pdf"
-            HTML(string=_html(blocks)).write_pdf(str(pdf))
+            HTML(string=html_text).write_pdf(str(pdf))
             written.append(pdf)
         except Exception:
             pass  # weasyprint not installed; MD/HTML still produced
@@ -172,6 +145,19 @@ def _key_result_rows(results: dict) -> list[list]:
         rows.append(["Most flexible residue", g(results, "rmsf", "most_flexible_resid")])
     if "sasa" in results:
         rows.append(["Total SASA (mean)", f"{_fmt(g(results,'sasa','total_sasa','mean'),1)} nm²"])
+    if "pbc_validation" in results:
+        rows.append(["PBC proof (all checks)",
+                     "pass" if g(results, "pbc_validation", "all_checks_pass") else "FAIL"])
+    if "interface" in results and g(results, "interface", "partners"):
+        rows.append(["Interface: min. distance (mean)",
+                     f"{_fmt(g(results,'interface','min_interface_dist_nm','mean'))} nm"])
+        rows.append(["Interface: core residues",
+                     " / ".join(str(x) for x in (g(results, "interface",
+                                                     "n_core_interface_residues") or []))])
+        rows.append(["Interface: persistent contacts", g(results, "interface", "n_persistent_contacts")])
+    if "equilibration" in results:
+        for v in (g(results, "equilibration", "verdicts") or [])[:3]:
+            rows.append(["Preparation", v])
     return [r for r in rows if r[1] not in (None, "n/a")]
 
 
@@ -187,9 +173,23 @@ def _interpretation(results: dict) -> list[str]:
     lines = []
     conv = _nested(results, ("rmsd", "convergence", "converged"))
     if conv is not None:
-        lines.append(f"**Stability.** Backbone RMSD "
-                     f"{'reached a plateau' if conv else 'had not fully plateaued'} "
-                     f"over the analysed window.")
+        # an RMSD plateau alone is not evidence of stability or equilibrium
+        lines.append(f"**RMSD time course.** The backbone RMSD "
+                     f"{'levels off' if conv else 'had not levelled off'} over the analysed "
+                     f"window; this alone does not establish stability — see the convergence, "
+                     f"interface and stationarity results.")
+    win = _nested(results, ("analysis_window", "binding_observables_stationary"))
+    if win is not None:
+        lines.append("**Stationarity.** " + (
+            "Binding-related observables are stationary after "
+            f"{_fmt(_nested(results, ('analysis_window', 'conservative_t0_ns')), 1)} ns."
+            if win else "Binding-related observables are not stationary over the run: "
+                        "averages describe a changing state (see the window selection)."))
+    be = _nested(results, ("mmpbsa", "headline"))
+    if be:
+        lines.append("**Binding energy.** " + "; ".join(
+            f"{h['method']} {h['window']}: {_fmt(h['mean'], 1)} ± {_fmt(h['sem'], 1)} kcal/mol"
+            for h in be) + " — end-point estimates, not experimental affinities.")
     rg = _nested(results, ("rog",))
     if rg:
         init, fin = rg.get("rg_initial_nm"), rg.get("rg_final_nm")

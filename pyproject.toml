@@ -29,15 +29,18 @@ dependencies = [
     "networkx>=3.0",
     "tqdm>=4.65",
     "pyyaml>=6.0",
+    "markdown>=3.4",          # self-contained HTML documents
 ]
 
 [project.optional-dependencies]
 energy = ["panedr>=0.8"]                       # read .edr thermodynamics
+annotation = ["biopython>=1.80"]               # domain transfer / motif alignment
 fingerprints = ["prolif>=2.0", "rdkit>=2023.3"] # interaction fingerprints
 pdf = ["weasyprint>=60"]                        # PDF report export
 ui = ["rich>=13.0"]                             # nicer CLI output
 dev = ["pytest>=7.0", "pytest-cov", "ruff"]
-all = ["panedr>=0.8", "prolif>=2.0", "rdkit>=2023.3", "weasyprint>=60", "rich>=13.0"]
+all = ["panedr>=0.8", "biopython>=1.80", "prolif>=2.0", "rdkit>=2023.3", "weasyprint>=60",
+       "rich>=13.0"]
 
 [project.urls]
 Homepage = "https://github.com/SamDozer/molecular-dynamics-forge"
